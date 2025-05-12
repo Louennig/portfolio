@@ -131,6 +131,17 @@ h1 a:visited{
     color: black;
 }
 
+.titre-bleu{
+    text-decoration: none;
+}
+
+.titre-bleu:visited{
+    color: black;
+}
+
+.titre-bleu:hover{
+    color: #ff6b6b;;
+}
 
 nav {
     font-family: sans-serif;
