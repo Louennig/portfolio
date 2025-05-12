@@ -139,7 +139,7 @@ h1 a:visited{
     color: black;
 }
 
-.titre-bleu:hover{
+.titre-bleu > a:hover{
     color: #ff6b6b;;
 }
 
