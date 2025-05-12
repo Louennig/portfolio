@@ -131,18 +131,6 @@ h1 a:visited{
     color: black !important;
 }
 
-/* .titre-bleu{
-    text-decoration: none;
-}
-
-.titre-bleu:visited{
-    color: black;
-}
-
-.titre-bleu > a:hover{
-    color: #ff6b6b;;
-} */
-
 nav {
     font-family: sans-serif;
     padding-left: 0px;
