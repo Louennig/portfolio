@@ -121,27 +121,17 @@ h1 {
     padding-right: 0px;
     font-size: 2rem;
     margin: 0;
+    color: black;
 }
 
 h1 > a{
-    text-decoration: none;
+    text-decoration: none !important;
+    color: black !important;
 }
 
 h1 a:visited{
-    color: black;
+    color: black !important;
 }
-
-/* .titre-bleu{
-    text-decoration: none;
-}
-
-.titre-bleu:visited{
-    color: black;
-}
-
-.titre-bleu > a:hover{
-    color: #ff6b6b;;
-} */
 
 nav {
     font-family: sans-serif;
@@ -189,9 +179,6 @@ nav a {
     transition: color 0.3s;
 }
 
-nav a:hover {
-    color: #ff6b6b;
-}
 
 
 
