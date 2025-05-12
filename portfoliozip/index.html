@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louennig Correc</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background">
+        <div class="ink stain1"></div>
+        <div class="ink stain2"></div>
+        <div class="ink stain3"></div>
+        <div class="ink stain4"></div>
+        <div class="ink stain5"></div>
+        <div class="ink stain6"></div>
+        <div class="ink stain7"></div>
+        <div class="ink stain8"></div>
+        <div class="ink stain9"></div>
+        <div class="ink stain10"></div>
+    </div>
+    <!-- <header>
+        <h1>Louennig Correc</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header> -->
+
+    <header>
+        <div class="header-container">
+            <h1>Louennig Correc</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#projects">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+
+    <section class="main">
+        
+        
+        <section id="bvn">
+            <div class="intro-container">
+                <div class="intro-text">
+                    <h2>Bonjour !</h2>
+                    <p>Je m'appelle <span class="nom">Louennig Correc</span><br> Je suis passionné par la conception d’expériences interactives et élégantes.</p>
+                    <p>Mon univers ? L’informatique, entre logique pure, esthétique soignée, et lignes de code qui prennent vie.</p>
+                    <p>Ce portfolio est une fenêtre sur mes projets. Installez-vous confortablement, le voyage commence ici.</p>
+                    <p>PS c'est pas moi sur la photo mais le boug est trop bo</p>
+                </div>
+                <div class="intro-image">
+                    <img src="images/image02.jpg" alt="Portrait de Louennig" />
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <div class="bg-aboutme">
+        <section id="about">
+            <h2>about</h2>
+            <h2>me</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <h3><span class="bleu">Objectif 2027</span>  Intégrer l'<span class="bleu-petit">Enssat</span></h3>
+                </div>
+                <div class="timeline-item right">
+                    <h3><span class="bleu">2026</span>  Alternance/Stage</h3>
+                    <p>Actuellement à la recherche d'une <span class="bleu-petit">alternance</span> dans le domaine du développement <span class="bleu-petit">web</span> ou <span class="bleu-petit">logiciel</span>.</p>
+                </div>
+                <div class="timeline-item left">
+                    <h3><span class="bleu">2025 - Aujourd'hui</span> BUT Informatique</h3>
+                    <p></p>
+                    <a class="lien-timeline" href="https://iut-lannion.univ-rennes.fr">Iut de Lannion</a>
+                    <p>Je suis étudiant en première année de BUT informatique à l'IUT de Lannion.</p>
+                    <a class="lien-timeline" href="https://www.enseignementsup-recherche.gouv.fr/sites/default/files/annexe-2-licence-professionnelle-bachelor-universitaire-de-technologie-informatique-29016.pdf">Programme du BUT Informatique</a>
+                </div>
+                <div class="timeline-item right">
+                    <h3><span class="bleu">2024 - Aujourd'hui</span>  Pratique de la musique</h3>
+                    <p>Je pratique la musique bretonne depuis mon plus jeune âge et je suis en train de préparer mon CEM (Certificat d'études musicale) au conservatoire de Lannion.</p>
+                </div>
+                <div class="timeline-item left">
+                    <h3><span class="bleu">2021-2024</span>  Bac Général</h3>
+                    <p>Obtention du baccalauréat avec les spécialités Mathématiques et Numérique science de l'informatique (NSI) et avec en plus l'option maths expertes</p>
+                </div>
+                <div class="timeline-item right">
+                    <h3><span class="bleu">∞</span>  j'ai pas d'idée mais peut être que j'en aurait une plus tard</h3>
+                    <p>Texte cool à mettre mais flemme là</p>
+                </div>
+
+            </div>
+            <a href="images/Correc_Louennig_CV.pdf" download="Correc_Louennig_CV.pdf" class="bouton-telechargement">Télécharger CV</a>
+        </section>
+    </div>
+
+    <div class="bg-comp">
+        <section id="competences">
+            <h2>compétences</h2>
+            <div class="comp-cards">
+                <div class="comp-card" onclick="openOverlay('comp1')">
+                    <p>Compétence 1 :</p>
+                    <p>Développer des applications informatiques simples</p>
+                </div>
+                <div class="comp-card" onclick="openOverlay('comp2')">
+                    <p>Compétence 2 :</p>
+                    <p>Appréhender et construire des algorithmes</p>
+                </div>
+                <div class="comp-card" onclick="openOverlay('comp3')">
+                    <p>Compétence 3 :</p>
+                    <p>Installer et configurer un poste de travail</p>
+                </div>
+                <div class="comp-card" onclick="openOverlay('comp4')">
+                    <p>Compétence 4 :</p>
+                    <p>Concevoir et mettre en place une BDD</p>
+                </div>
+                <div class="comp-card" onclick="openOverlay('comp5')">
+                    <p>Compétence 5 :</p>
+                    <p>Identifier les besoins métiers des clients et des utilisateurs</p>
+                </div>
+                <div class="comp-card" onclick="openOverlay('comp6')">
+                    <p>Compétence 6 :</p>
+                    <p>Identifier ses aptitudes pour travailler dans une équipe</p>
+                </div>
+
+
+                <!-- Overlay pour la  compétance 1 -->
+                <div class="overlay" id="overlay-comp1">
+                    <div class="overlay-content">
+                        <span class="close-btn" onclick="closeOverlay('comp1')">&times;</span>
+                        <h2> Compétence 1 : Développer des applications informatiques simples</h2>
+                        <div class="comp-cards">
+                            <div class="comp-card-projet">
+                                <img src="images/S101.png" class="img_projet" alt="Image projet S1.01">
+                                <div class="projet-content">
+                                    <h3>Implémentation d'un besoin client</h3>
+                                    <p>S1.01</p>
+                                    <p>Nom du projet : Snake</p>
+                                </div>
+                            </div>
+
+                            <div class="comp-card-projet">
+                                <h2>A venir...</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overlay pour la  compétance 2 -->
+                <div class="overlay" id="overlay-comp2">
+                    <div class="overlay-content">
+                        <span class="close-btn" onclick="closeOverlay('comp2')">&times;</span>
+                        <h2> Compétence 2 : Appréhender et construire des algorithmes</h2>
+                        <div class="comp-cards">
+                            <div class="comp-card-projet">
+                                <img src="images/S102.png" class="img_projet" alt="Image projet S1.02">
+                                <div class="projet-content">
+                                    <h3>Comparaison d'approches algorithmiques</h3>
+                                    <p>S1.02</p>
+                                    <p>Nom du projet : Snake autonome</p>
+                                </div>
+                            </div>
+                            <div class="comp-card-projet">
+                                <h2>A venir...</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overlay pour la  compétance 3 -->
+                <div class="overlay" id="overlay-comp3">
+                    <div class="overlay-content">
+                        <span class="close-btn" onclick="closeOverlay('comp3')">&times;</span>
+                        <h2> Compétence 3 : Installer et configurer un poste de travail</h2>
+                        <div class="comp-cards">
+                            <div class="comp-card-projet">
+                                <img src="images/S103.png" class="img_projet" alt="Image projet S1.03">
+                                <div class="projet-content">
+                                    <h3>Installation d'un poste pour le développement</h3>
+                                    <p>S1.03</p>
+                                    <p>Nom du projet : docker</p>
+                                </div>
+                            </div>
+                            <div class="comp-card-projet">
+                                <h2>A venir...</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overlay pour la  compétance 4 -->
+                <div class="overlay" id="overlay-comp4">
+                    <div class="overlay-content">
+                        <span class="close-btn" onclick="closeOverlay('comp4')">&times;</span>
+                        <h2> Compétence 4 : Concevoir et mettre en place une BDD</h2>
+                        <div class="comp-cards">
+                            <div class="comp-card-projet">
+                                <img src="images/S104.png" class="img_projet" alt="Image projet S1.04">
+                                <div class="projet-content">
+                                    <h3>Création d’une base de données</h3>
+                                    <p>S1.04</p>
+                                    <p>Nom du projet : BDD</p>
+                                </div>
+                            </div>
+                            <div class="comp-card-projet">
+                                <h2>A venir...</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overlay pour la  compétance 5 -->
+                <div class="overlay" id="overlay-comp5">
+                    <div class="overlay-content">
+                        <span class="close-btn" onclick="closeOverlay('comp5')">&times;</span>
+                        <h2> Compétence 5 : Identifier les besoins métiers des clients et des utilisateurs</h2>
+                        <div class="comp-cards">
+                            <div class="comp-card-projet">
+                                <img src="images/S105.jpg" class="img_projet" alt="Image projet S1.05">
+                                <div class="projet-content">
+                                    <h3>Recueil de besoins</h3>
+                                    <p>S1.05</p>
+                                    <p>Nom du projet : Site de JO Pairs 2024</p>
+                                </div>
+                            </div>
+                            <div class="comp-card-projet">
+                                <h2>A venir...</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overlay pour la  compétance 6 -->
+                <div class="overlay" id="overlay-comp6">
+                    <div class="overlay-content">
+                        <span class="close-btn" onclick="closeOverlay('comp6')">&times;</span>
+                        <h2> Compétence 6 : Identifier ses aptitudes pour travailler dans une équipe</h2>
+                        <div class="comp-cards">
+                            <div class="comp-card-projet">
+                                <img src="images/S106.png" class="img_projet" alt="Image projet S1.06">
+                                <div class="projet-content">
+                                    <h3>Découverte de l'environnement économique et écologique</h3>
+                                    <p>S1.06</p>
+                                    <p>Nom du projet : aucun</p>
+                                </div>
+                            </div>
+                            <div class="comp-card-projet">
+                                <h2>A venir...</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+      
+    <div class="bg-ressource">
+        <section id="ressource">
+            <h2>Ressources</h2>
+            <div class="ressource-cards">
+                <div class="ressource-card" onclick="toggleRessource(this)">
+
+                    <div class="ressource-summary">
+                        <h3>R1.01</h3>
+                    </div>
+
+                    <div class="ressource-details">
+                        <p>Maîtrise de Java orienté objet, utilisé dans plusieurs projets universitaires comme un simulateur d'élection.</p>
+                        <ul>
+                            <li>Projet 1 : Simulateur d'élections</li>
+                            <li>Projet 2 : Gestion de fichiers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ressource-card" onclick="toggleRessource(this)">
+                    
+                    <div class="ressource-summary">
+                        <h3>R1.02</h3>
+                    </div>
+
+                    <div class="ressource-details">
+                        <p>Maîtrise de Java orienté objet, utilisé dans plusieurs projets universitaires comme un simulateur d'élection.</p>
+                        <ul>
+                            <li>Projet 1 : Simulateur d'élections</li>
+                            <li>Projet 2 : Gestion de fichiers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ressource-card" onclick="toggleRessource(this)">
+                    
+                    <div class="ressource-summary">
+                        <h3>Java</h3>
+                    </div>
+
+                    <div class="ressource-details">
+                        <p>Maîtrise de Java orienté objet, utilisé dans plusieurs projets universitaires comme un simulateur d'élection.</p>
+                        <ul>
+                            <li>Projet 1 : Simulateur d'élections</li>
+                            <li>Projet 2 : Gestion de fichiers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ressource-card" onclick="toggleRessource(this)">
+                    
+                    <div class="ressource-summary">
+                        <h3>Java</h3>
+                    </div>
+
+                    <div class="ressource-details">
+                        <p>Maîtrise de Java orienté objet, utilisé dans plusieurs projets universitaires comme un simulateur d'élection.</p>
+                        <ul>
+                            <li>Projet 1 : Simulateur d'élections</li>
+                            <li>Projet 2 : Gestion de fichiers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ressource-card" onclick="toggleRessource(this)">
+                    
+                    <div class="ressource-summary">
+                        <h3>Java</h3>
+                    </div>
+
+                    <div class="ressource-details">
+                        <p>Maîtrise de Java orienté objet, utilisé dans plusieurs projets universitaires comme un simulateur d'élection.</p>
+                        <ul>
+                            <li>Projet 1 : Simulateur d'élections</li>
+                            <li>Projet 2 : Gestion de fichiers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ressource-card" onclick="toggleRessource(this)">
+                    
+                    <div class="ressource-summary">
+                        <h3>Java</h3>
+                    </div>
+
+                    <div class="ressource-details">
+                        <p>Maîtrise de Java orienté objet, utilisé dans plusieurs projets universitaires comme un simulateur d'élection.</p>
+                        <ul>
+                            <li>Projet 1 : Simulateur d'élections</li>
+                            <li>Projet 2 : Gestion de fichiers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="ressource-card" onclick="toggleRessource(this)">
+                    
+                    <div class="ressource-summary">
+                        <h3>Java</h3>
+                    </div>
+
+                    <div class="ressource-details">
+                        <p>Maîtrise de Java orienté objet, utilisé dans plusieurs projets universitaires comme un simulateur d'élection.</p>
+                        <ul>
+                            <li>Projet 1 : Simulateur d'élections</li>
+                            <li>Projet 2 : Gestion de fichiers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <section id="projets" class="ink-zone">
+        <h2>Projets</h2>
+        <div class="projects-container">
+            <div class="project-blob">
+                <div class="project-content">
+                    <h3>Snake</h3>
+                    <p>Jeu Snake en C avec affichage console.</p>
+                </div>
+            </div>
+            <div class="project-blob">
+                <div class="project-content">
+                    <h3>JO 2024</h3>
+                    <p>Site vitrine sur les JO de Paris, responsive.</p>
+                </div>
+            </div>
+            <!-- Ajoute ici les autres projets -->
+        </div>
+    </section>
+
+            
+    
+    
+    
+
+
+        
+        
+    
+    <div class="suitsuit">
+        <section id="projects">
+            <h2>Mes Projets</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Snake</h3>
+                    <p>Développement en C d’une version console du jeu Snake. Gestion du déplacement, de la croissance du serpent, des collisions et de l’apparition aléatoire des pommes.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Snake autonome</h3>
+                    <p>Description du projet.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Site Web JO de Paris 2024</h3>
+                    <p>Description du projet.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Gestion de base de donnée pour une ligue de football</h3>
+                    <p>Description du projet.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>N'hésitez pas à me contacter via mon email : contact@exemple.com</p>
+            <p>bob</p>
+            <audio controls>
+                <source src="sound/tkt.mp3" type="audio/mpeg">
+              </audio>
+
+                            
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

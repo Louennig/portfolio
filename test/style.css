@@ -1,0 +1,92 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0e0e0e;
+    overflow-x: hidden;
+    position: relative;
+    color: white;
+    min-height: 100vh;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    color: #fff;
+  }
+  
+  /* Fond dynamique */
+  .background {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 40%, #ff6ec4, transparent 40%),
+                radial-gradient(circle at 70% 80%, #7873f5, transparent 50%),
+                radial-gradient(circle at 50% 20%, #00f0ff, transparent 40%);
+    background-size: 200% 200%;
+    animation: moveBackground 20s ease-in-out infinite;
+    filter: blur(60px);
+    opacity: 0.4;
+  }
+  
+  @keyframes moveBackground {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+  }
+  
+  /* Grille des compétences */
+  .skills-section {
+    padding: 4rem 2rem;
+  }
+  
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+  
+  .skill {
+    width: 120px;
+    height: 120px;
+    position: relative;
+  }
+  
+  .skill svg {
+    transform: rotate(-90deg);
+  }
+  
+  .skill circle {
+    fill: none;
+    stroke-width: 12;
+    stroke-linecap: round;
+  }
+  
+  .skill .bg {
+    stroke: #333;
+  }
+  
+  .skill .progress {
+    stroke-dasharray: 314; /* 2πr (r = 50) */
+    stroke-dashoffset: 314;
+    transition: stroke-dashoffset 2s ease;
+  }
+  
+  .skill span {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-weight: bold;
+  }
+  
