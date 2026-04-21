@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Louennig Correc</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ink: #0a0a0a;
+      --paper: #f0ede6;
+      --accent: #ef233c; /* adouci par rapport à #ef233c */
+      --mid: #7a7570;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      /*cursor: none;*/
+    }
+
+    /* ─── CURSOR ───
+#cur {
+  position: fixed; z-index: 9999;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width .2s, height .2s, background .2s;
+  mix-blend-mode: multiply;
+}
+#cur.big { width: 48px; height: 48px; background: var(--ink); }
+a, button { cursor: none; } */
+
+    /* ─── LOADER ─── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      pointer-events: all;
+      transition: transform .9s cubic-bezier(.7, 0, .3, 1) .2s;
+    }
+
+    #loader-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 12vw, 9rem);
+      color: var(--paper);
+      letter-spacing: .06em;
+      overflow: hidden;
+      display: flex;
+      position: relative;
+    }
+
+    #loader-name span {
+      display: inline-block;
+      transform: translateY(120%);
+      color: var(--paper);
+      transition: transform .9s cubic-bezier(.16, 1, .3, 1), color .5s ease;
+    }
+
+    #loader-name span.in {
+      transform: translateY(0);
+    }
+
+    /* color change class applied progressively from left to right */
+    #loader-name span.color {
+      color: var(--accent);
+    }
+
+    /* hide the previous sweep element (we now color per-letter) */
+    #loader-sweep { display: none; }
+
+    #loader-bar {
+      width: 420px;
+      height: 8px;
+      background: rgba(240, 237, 230, .12);
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    #loader-bar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1.8s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    #loader-bar.fill::after {
+      transform: scaleX(1);
+    }
+
+    #loader-pct {
+      font-size: 1.6rem;
+      letter-spacing: .22em;
+      color: var(--paper);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* sweep covering the PORTFOLIO letters from the left */
+    #loader-sweep {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      background: var(--accent);
+      z-index: 3;
+      transition: width .7s cubic-bezier(.2,.9,.2,1);
+      pointer-events: none;
+    }
+
+    #loader.out {
+      transform: translateY(-100%);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 1rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.5);
+      color: var(--paper);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 22px rgba(10, 10, 10, 0.08);
+      border-radius: 12px;
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: .06em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .68rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color .18s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100svh;
+      display: grid;
+      place-items: end;
+      padding: 0 4rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-word {
+      position: absolute;
+      bottom: -3vw;
+      left: -.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(14rem, 28vw, 28rem);
+      line-height: .85;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(10, 10, 10, .06);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+    }
+
+    .hero-tag {
+      font-size: .68rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeup .6s 2.8s ease forwards;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--mid);
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(6rem, 16vw, 18rem);
+      line-height: .88;
+      letter-spacing: .01em;
+      color: var(--ink);
+    }
+
+    h1 .line {
+      display: block;
+      overflow: hidden;
+    }
+
+    h1 .line span {
+      display: block;
+      transform: translateY(110%);
+      animation: up .9s cubic-bezier(.16, 1, .3, 1) forwards;
+    }
+
+    h1 .line:nth-child(1) span {
+      animation-delay: 2.4s;
+    }
+
+    h1 .line:nth-child(2) span {
+      animation-delay: 2.55s;
+      color: var(--accent);
+    }
+
+    .hero-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 3rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeup .6s 3s ease forwards;
+    }
+
+    .hero-desc {
+      font-size: .88rem;
+      line-height: 1.85;
+      color: var(--mid);
+      max-width: 320px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .8rem;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 400;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: .2rem;
+      transition: gap .3s, color .2s, border-color .2s;
+    }
+
+    .hero-cta:hover {
+      gap: 1.5rem;
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    @keyframes up {
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeup {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ─── MARQUEE ─── */
+    .marquee {
+      border-top: 1px solid rgba(10, 10, 10, .12);
+      border-bottom: 1px solid rgba(10, 10, 10, .12);
+      padding: 1rem 0;
+      overflow: hidden;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 4rem;
+      animation: marquee 22s linear infinite;
+    }
+
+    .marquee-item {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: .12em;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .marquee-dot {
+      color: var(--accent);
+      font-size: 1.4rem;
+      line-height: 0;
+    }
+
+    @keyframes marquee {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ─── SECTIONS ─── */
+    .section {
+      padding: 9rem 4rem;
+    }
+
+    .section-index {
+      font-size: .6rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: .8rem;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 9rem);
+      line-height: .9;
+      letter-spacing: .02em;
+      color: var(--ink);
+      margin-bottom: 5rem;
+    }
+
+    h2 em {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    /* ─── REVEAL ─── */
+    .r {
+      opacity: 0;
+      transform: translateY(48px);
+      transition: opacity .9s ease, transform .9s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .r.v {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .rl {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity .9s ease, transform .9s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .rl.v {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    #about h2 {
+      color: var(--paper);
+    }
+
+    #about .section-index {
+      color: rgba(240, 237, 230, .3);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 8rem;
+      align-items: start;
+    }
+
+    .about-photo-wrap {
+      position: relative;
+    }
+
+    .about-photo {
+      width: clamp(180px, 26vw, 340px);
+      background: rgba(240, 237, 230, .05);
+      border: 1px solid rgba(240, 237, 230, .1);
+      display: block;
+      padding: 5px; /* espace entre le cadre et la photo */
+      box-sizing: border-box;
+      color: rgba(240, 237, 230, .18);
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      border-radius: 14px; /* arrondi du cadre */
+      margin: 0 auto;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+      border-radius: inherit; /* même arrondi que le cadre */
+      position: static;
+    }
+
+    .about-photo-caption {
+      position: absolute;
+      bottom: -1.8rem;
+      left: 0;
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(240, 237, 230, .2);
+    }
+
+    .about-lead {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--paper);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+
+    .about-lead strong {
+      color: var(--accent);
+      font-weight: 400;
+    }
+
+    .about-body {
+      font-size: .85rem;
+      line-height: 2;
+      color: rgba(240, 237, 230, .4);
+      margin-bottom: 3rem;
+    }
+
+    .about-dl {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      border-top: 1px solid rgba(240, 237, 230, .1);
+      padding-top: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .about-dl dt {
+      font-size: .6rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(240, 237, 230, .28);
+      margin-bottom: .4rem;
+    }
+
+    .about-dl dd {
+      font-size: .85rem;
+      color: var(--paper);
+    }
+
+    .about-dl dd a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .cv-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .8rem;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--paper);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(240, 237, 230, .2);
+      padding-bottom: .2rem;
+      transition: all .2s;
+    }
+
+    .cv-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      gap: 1.5rem;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    #experience {
+      background: var(--paper);
+    }
+
+    .exp-list {
+      border-top: 1px solid rgba(10, 10, 10, .1);
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+      padding: 3rem 0;
+      border-bottom: 1px solid rgba(10, 10, 10, .1);
+      transition: background .3s, padding-left .3s;
+    }
+
+    .exp-item:hover {
+      background: rgba(10, 10, 10, .02);
+      padding-left: .5rem;
+    }
+
+    .exp-period {
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      padding-top: .3rem;
+      line-height: 1.8;
+    }
+
+    .exp-company-name {
+      font-size: .6rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .6rem;
+    }
+
+    .exp-role {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: .8rem;
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1.2rem;
+    }
+
+    .exp-tag {
+      font-size: .58rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(10, 10, 10, .15);
+      color: var(--mid);
+      padding: .28rem .65rem;
+      transition: all .2s;
+    }
+
+    .exp-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .exp-desc {
+      font-size: .83rem;
+      line-height: 1.9;
+      color: var(--mid);
+      padding-top: .3rem;
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects {
+      background: var(--accent);
+      padding-bottom: 4rem;
+      color: var(--paper);
+    }
+
+    #projects h2 {
+      color: var(--paper);
+    }
+
+    #projects .section-index {
+      color: rgba(240, 237, 230, .95);
+    }
+
+    .project-item {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: 3rem;
+      align-items: center;
+      padding: 2.6rem 0;
+      border-bottom: 1px solid rgba(240, 237, 230, .08);
+      /*cursor: none;*/
+      position: relative;
+      overflow: hidden;
+      transition: padding-left .4s ease;
+      cursor: pointer;
+      align-self: start;
+    }
+
+    /* Row container with two columns: main (1.6fr) and side (1fr). Use .reverse to swap columns. */
+    .project-row {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-row.reverse { grid-template-columns: 1fr 1.6fr; }
+
+    /* allow forcing an equal split for a specific row */
+    .project-row.equal { grid-template-columns: 1fr 1fr; }
+    .project-row.equal .project-item.one-third { min-width: 0; }
+
+    .project-item.two-thirds { grid-column: 1 / 2; }
+    .project-item.one-third { grid-column: 2 / 3; }
+
+    /* reverse rows swap grid columns for items */
+    .project-row.reverse .project-item.two-thirds { grid-column: 2 / 3; }
+    .project-row.reverse .project-item.one-third { grid-column: 1 / 2; }
+
+    /* make the smaller column slightly larger with a minimum width */
+    .project-item.one-third { min-width: 260px; }
+
+    /* proj-details as full-width rows inside project-row */
+    .project-row .proj-details { grid-column: 1 / -1; margin-top: 1rem; }
+
+    .project-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      background: rgba(214,111,90,.18); /* stronger, more red and visible */
+      transition: width .4s ease;
+      z-index: 0;
+    }
+
+    .project-item:hover {
+      padding-left: 1.4rem;
+    }
+
+    /* Keep the hover padding when the project is open */
+    .project-item.open {
+      padding-left: 1.4rem;
+    }
+
+    .project-item:hover::before {
+      width: 100%;
+    }
+
+    .project-item>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .proj-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      color: rgba(240, 237, 230, .18);
+      letter-spacing: .1em;
+    }
+
+    .proj-cat {
+      font-size: .6rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+
+    .proj-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--paper);
+      line-height: 1;
+    }
+
+    .proj-sub {
+      font-size: .76rem;
+      color: rgba(240, 237, 230, .32);
+      margin-top: .4rem;
+    }
+
+    .proj-arrow {
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(240, 237, 230, .14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(240, 237, 230, .3);
+      font-size: 1.1rem;
+      transition: all .3s;
+      flex-shrink: 0;
+    }
+
+    /* Dropdown details for projects */
+    .proj-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .36s ease, padding .36s ease, opacity .24s ease;
+      border-top: 1px solid rgba(240,237,230,.06);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+      margin-top: 1rem;
+      grid-column: 1 / -1; /* span full width of the project-item grid */
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .proj-details-item { display: none; }
+    .proj-details-item[aria-active="true"] { display: block; }
+
+    .proj-details-inner {
+      padding: .9rem 1rem 1rem 1rem;
+      color: rgba(240, 237, 230, .95);
+      font-size: .95rem;
+      line-height: 1.7;
+      display: grid;
+      grid-template-columns: 160px 1fr; /* slightly larger media column */
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .proj-details .project-section { margin-bottom: .9rem; }
+    .proj-details .project-section h3 { margin-bottom: .45rem; font-size: 1rem; color: var(--paper); }
+    .proj-details .project-section p, .proj-details .project-section li p { margin: 0; color: rgba(240,237,230,.9); }
+    .proj-details .project-section ul { margin: .4rem 0 0 1.1rem; }
+    .proj-details .project-section ul li { margin-bottom: .35rem; }
+
+    .proj-arrow:hover { cursor: pointer; }
+
+    .proj-media img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; }
+    .proj-media { width: 100%; height: 100%; max-height: 160px; overflow: hidden; }
+
+    @media (max-width: 768px) {
+      .proj-details-inner { grid-template-columns: 1fr; }
+      .proj-media { max-height: 220px; }
+    }
+
+    /* dropdown entrance animation */
+    @keyframes dropdownIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .project-item.open ~ .proj-details .proj-details-inner { animation: dropdownIn .28s ease both; }
+
+    /* subtle border and spacing for the text column */
+    .proj-text { padding-right: .4rem; }
+    .proj-text h3 { margin-top: 0; margin-bottom: .35rem; color: var(--paper); font-size: 1rem; }
+    .proj-text ul { margin-left: 1rem; }
+
+    .project-item.open ~ .proj-details {
+      padding-bottom: 1rem;
+      opacity: 1;
+    }
+
+    .proj-arrow.rotate {
+      transform: rotate(90deg);
+    }
+
+    .project-item:hover .proj-arrow {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .project-imgs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 2px;
+    }
+
+    .img-ph {
+      aspect-ratio: 16/9;
+      background: rgba(240, 237, 230, .03);
+      border: 1px dashed rgba(240, 237, 230, .1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .7rem;
+      color: rgba(240, 237, 230, .18);
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-align: center;
+    }
+
+    .img-ph svg {
+      opacity: .25;
+    }
+
+    /* ─── PASSIONS ─── */
+    #passions {
+      background: var(--paper);
+    }
+
+    .passions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .passion-card {
+      padding: 4rem 3rem;
+      background: rgba(10, 10, 10, .04);
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+    }
+
+    .passion-card:hover {
+      background: rgba(10, 10, 10, .07);
+    }
+
+    .passion-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .9rem;
+      letter-spacing: .2em;
+      color: rgba(10, 10, 10, .18);
+      margin-bottom: 3rem;
+    }
+
+    .passion-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .passion-body {
+      font-size: .83rem;
+      line-height: 1.9;
+      color: var(--mid);
+    }
+
+    .passion-badge {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: .58rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: .28rem .75rem;
+    }
+
+    .passion-bg {
+      position: absolute;
+      right: -1rem;
+      bottom: -3rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 9rem;
+      color: rgba(10, 10, 10, .03);
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--accent);
+      color: var(--paper);
+      padding: 9rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    #contact h2 em {
+      color: var(--paper);
+    }
+
+    #contact .section-index {
+      color: rgba(240, 237, 230, .55);
+    }
+
+    #contact h2 {
+      color: var(--paper);
+      font-size: clamp(4rem, 11vw, 12rem);
+      margin-bottom: 3rem;
+    }
+
+    .contact-email-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(.85rem, 2vw, 1.3rem);
+      color: var(--paper);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(240, 237, 230, .4);
+      padding-bottom: .2rem;
+      transition: border-color .2s;
+      letter-spacing: .04em;
+      font-weight: 300;
+    }
+
+    .contact-email-link:hover {
+      border-color: var(--paper);
+    }
+
+    .contact-meta {
+      margin-top: 4rem;
+      display: flex;
+      gap: 5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .contact-meta-item dt {
+      font-size: .55rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(240, 237, 230, .5);
+      margin-bottom: .4rem;
+    }
+
+    .contact-meta-item dd {
+      font-size: .85rem;
+      color: var(--paper);
+    }
+
+    .socials {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 4rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .soc {
+      font-size: .64rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--paper);
+      text-decoration: none;
+      border: 1px solid rgba(240, 237, 230, .35);
+      padding: .65rem 1.4rem;
+      transition: all .2s;
+    }
+
+    .soc:hover {
+      background: var(--paper);
+      color: var(--accent);
+      border-color: var(--paper);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      color: rgba(240, 237, 230, .22);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: .58rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1.5rem 1.5rem;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .nav-links li:nth-child(n+3) {
+        display: none;
+      }
+
+      #hero {
+        padding: 0 1.5rem 4rem;
+      }
+
+      .section {
+        padding: 5rem 1.5rem;
+      }
+
+      h2 {
+        margin-bottom: 3rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .exp-item {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .project-item {
+        grid-template-columns: 48px 1fr auto;
+        gap: 1.2rem;
+      }
+
+      .project-row { grid-template-columns: 1fr; }
+      .project-item.two-thirds, .project-item.one-third { grid-column: auto; }
+      .project-row .proj-details { grid-column: auto; }
+
+      .proj-title {
+        font-size: 1.8rem;
+      }
+
+      .passions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-row {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: flex-start;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      #contact {
+        padding: 5rem 1.5rem;
+      }
+
+      .contact-meta {
+        gap: 2rem;
+      }
+
+      .project-imgs {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Projects-on-accent overrides (keeps original rules intact, overrides for contrast) */
+    #projects .project-item::before {
+      background: linear-gradient(90deg, rgba(0,0,0,.06), rgba(0,0,0,.02));
+      transition: width .35s cubic-bezier(.2,.9,.2,1), opacity .25s;
+      opacity: .95;
+    }
+
+    #projects .proj-cat { color: var(--paper); opacity: .95; }
+    #projects .proj-sub { color: rgba(240,237,230,.8); }
+    #projects .proj-num { color: rgba(240,237,230,.28); }
+
+    #projects .proj-arrow {
+      border-color: rgba(240, 237, 230, .18);
+      color: rgba(240, 237, 230, .95);
+      background: transparent;
+    }
+
+    #projects .project-item:hover::before { width: 100%; opacity: 1; }
+    #projects .project-item:hover .proj-arrow { border-color: rgba(240,237,230,.95); color: rgba(240,237,230,.95); }
+
+    /* New tweaks requested */
+    /* Make the word "fait" black in the projects heading */
+    #projects h2 em { color: var(--ink); }
+
+    /* Darker borders to better separate project items */
+    #projects .project-item { border-bottom: 1px solid rgba(0,0,0,.18); }
+    #projects .proj-details { border-top: 1px solid rgba(0,0,0,.12); }
+
+    /* Keep hover overlay visible when a project is open */
+    #projects .project-item.open::before { width: 100%; opacity: 1; }
+
+    /* Add breathing room to the right of the arrow */
+    #projects .proj-arrow { margin-right: .8rem; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ─── LOADER ─── -->
+  <div id="loader">
+    <div id="loader-name">
+      <span id="loader-sweep" aria-hidden="true"></span>
+      <span>P</span><span>O</span><span>R</span><span>T</span><span>F</span><span>O</span><span>L</span><span>I</span><span>O</span>
+    </div>
+    <div id="loader-bar"></div>
+    <div id="loader-pct">000</div>
+  </div>
+
+  <div id="cur"></div>
+
+  <!-- ─── NAV ─── -->
+  <nav id="nav" style="opacity:0">
+    <a class="nav-logo" href="#hero">LC.</a>
+    <ul class="nav-links">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#experience">Expérience</a></li>
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="hero-bg-word" aria-hidden="true">DESIGN</div>
+    <div class="hero-content">
+      <div class="hero-tag">Lannion, Bretagne — Étudiant &amp; Créateur</div>
+      <h1 aria-label="Louennig Correc">
+        <span class="line"><span>LOUENNIG</span></span>
+        <span class="line"><span>CORREC.</span></span>
+      </h1>
+      <div class="hero-row">
+        <p class="hero-desc">
+          Passionné par les interfaces propres, les expériences élégantes et le code qui prend vie. Actuellement en
+          stage chez Feichter Electronics.
+        </p>
+        <a href="#projects" class="hero-cta">Voir mes projets →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MARQUEE ─── -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">Stage Feichter Electronics <span class="marquee-dot">◆</span> IUT Lannion <span
+          class="marquee-dot">◆</span> Alternance 2026 <span class="marquee-dot">◆</span> Accordéon Diatonique <span
+          class="marquee-dot">◆</span> Développement Web <span class="marquee-dot">◆</span> ENSSAT <span
+          class="marquee-dot">◆</span></div>
+      <div class="marquee-item">Stage Feichter Electronics <span class="marquee-dot">◆</span> IUT Lannion <span
+          class="marquee-dot">◆</span> Alternance 2026 <span class="marquee-dot">◆</span> Accordéon Diatonique <span
+          class="marquee-dot">◆</span> Développement Web <span class="marquee-dot">◆</span> ENSSAT <span
+          class="marquee-dot">◆</span></div>
+    </div>
+  </div>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about" class="section">
+    <div class="section-index r">01 — À propos</div>
+    <h2 class="r">Qui<br><em>suis-je</em></h2>
+    <div class="about-grid">
+      <div class="rl">
+        <div class="about-photo-wrap">
+          <div class="about-photo">
+            <img src="images/moi2_color.png" alt="Louennig Correc">
+          </div>
+          <div class="about-photo-caption">Louennig Correc — Lannion, 2025</div>
+        </div>
+      </div>
+      <div class="r">
+        <p class="about-lead">
+          J'ai 19 ans, étudiant en <strong>2ème année de BUT d'informatique</strong> à l'IUT de Lannion. Je crée des interfaces
+          où technique et esthétique se complètent.
+        </p>
+        <p class="about-body">
+          Ce qui me motive : comprendre comment les choses fonctionnent, les optimiser, expérimenter en continu. Je
+          cherche une alternance en développement pour septembre 2026 et vise l'ENSSAT pour me spécialiser
+          davantage.<br><br>
+          En dehors du code, je prépare mon CEM en musique bretonne au conservatoire — l'accordéon diatonique m'apporte
+          rigueur et sens du rythme que j'applique aussi à mes projets.
+        </p>
+        <dl class="about-dl">
+          <div>
+            <dt>Formation</dt>
+            <dd>BUT Informatique — IUT Lannion</dd>
+          </div>
+          <div>
+            <dt>Localisation</dt>
+            <dd>22300 Lannion, Bretagne</dd>
+          </div>
+          <div>
+            <dt>Stage actuel</dt>
+            <dd>Feichter Electronics</dd>
+          </div>
+          <div>
+            <dt>Disponible</dt>
+            <dd><a href="#contact">Alternance — Sept. 2026</a></dd>
+          </div>
+        </dl>
+        <a href="https://louennig.github.io/portfolio/ressources/CV_LCORREC_STAGE.pdf" target="_blank"
+          class="cv-link">Télécharger mon CV →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EXPERIENCE ─── -->
+  <section id="experience" class="section">
+    <div class="section-index r">02 — Expérience</div>
+    <h2 class="r">Ce que<br>j'ai <em>vécu</em></h2>
+    <div class="exp-list">
+
+      <div class="exp-item r">
+        <div class="exp-period">Avr 2025<br>→ Aujourd'hui</div>
+        <div>
+          <div class="exp-company-name">Feichter Electronics</div>
+          <div class="exp-role">Stagiaire<br>Développeur</div>
+          <div class="exp-tags">
+            <span class="exp-tag">Stage</span>
+            <span class="exp-tag">10–12 semaines</span>
+            <span class="exp-tag">Lannion</span>
+          </div>
+        </div>
+        <p class="exp-desc">Participation à des projets concrets dans un environnement professionnel. Développement et
+          intégration de solutions logicielles dans le domaine de l'électronique. Montée en compétences sur les
+          technologies embarquées et les outils métiers.</p>
+      </div>
+
+      <div class="exp-item r">
+        <div class="exp-period">Sept 2023<br>→ Aujourd'hui</div>
+        <div>
+          <div class="exp-company-name">IUT de Lannion — Univ. Rennes</div>
+          <div class="exp-role">Étudiant<br>Informatique</div>
+          <div class="exp-tags">
+            <span class="exp-tag">C</span>
+            <span class="exp-tag">Java</span>
+            <span class="exp-tag">Python</span>
+            <span class="exp-tag">HTML/CSS/JS</span>
+            <span class="exp-tag">PostgreSQL</span>
+            <span class="exp-tag">Docker</span>
+            <span class="exp-tag">Git</span>
+          </div>
+        </div>
+        <p class="exp-desc">Formation BUT Informatique avec projets académiques en équipe et en solo : Snake en C,
+          automatisation Docker, BDD relationnelle, site responsive pour les JO 2024.</p>
+      </div>
+
+      <div class="exp-item r">
+        <div class="exp-period">Sept 2026<br>→ Recherche</div>
+        <div>
+          <div class="exp-company-name">Prochaine aventure</div>
+          <div class="exp-role">Alternant<br>Dev</div>
+          <div class="exp-tags">
+            <span class="exp-tag">Alternance</span>
+            <span class="exp-tag">Ouvert aux offres</span>
+            <span class="exp-tag">ENSSAT</span>
+          </div>
+        </div>
+        <p class="exp-desc">Je recherche une alternance en développement web ou logiciel pour septembre 2026, en vue
+          d'intégrer l'ENSSAT et me spécialiser davantage en ingénierie logicielle.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── PROJECTS ─── -->
+  <section id="projects" class="section">
+    <div class="section-index r">03 — Projets</div>
+    <h2 class="r">Ce que<br>j'ai <em>fait</em></h2>
+
+    <div class="project-row">
+      <div class="project-item two-thirds r" data-id="p01">
+        <div class="proj-num">01</div>
+        <div>
+          <div class="proj-cat">Interface & Design</div>
+          <div class="proj-title">Site JO Paris 2024</div>
+          <div class="proj-sub">Figma · HTML/CSS/JS · Responsive · Charte graphique</div>
+        </div>
+        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
+      </div>
+
+      <div class="project-item one-third r" data-id="p02">
+        <div class="proj-num">02</div>
+        <div>
+          <div class="proj-cat">Algorithmique — C</div>
+          <div class="proj-title">Snake en Terminal</div>
+          <div class="proj-sub">C · Doxygen · 4 versions progressives</div>
+        </div>
+        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
+      </div>
+
+      <div class="proj-details" aria-hidden="true">
+        <div class="proj-details-item" data-for="p01">
+          <div class="proj-details-inner">
+            <div class="proj-media"><img src="images/S105.jpg" alt="Site JO Paris 2024"></div>
+            <div class="proj-text">
+              <h3>Objectif du projet</h3>
+              <p>Concevoir un site web responsive correspondant aux attentes d’un client fictif : Tony Estanguet, président du comité d’organisation des JO 2024. L’objectif : recueillir les besoins, définir les cibles, organiser le contenu, concevoir une charte graphique et des maquettes, puis développer un site respectant les contraintes du cahier des charges.</p>
+              <h3>Organisation</h3>
+              <p>Projet en équipe de 3 à 4 étudiants. Chacun avait un rôle précis (rédaction, design, développement...). Travail collaboratif via Teams et dépôt Git avec points réguliers.</p>
+              <h3>Étapes de réalisation</h3>
+              <ul>
+                <li><p><strong>Expression des besoins :</strong> Rédaction d’une synthèse à partir de l’interview client fictif.</p></li>
+                <li><p><strong>Maquettage :</strong> Maquettes responsive sur Figma.</p></li>
+                <li><p><strong>Développement :</strong> Intégration HTML/CSS/JS et mise en place de la responsivité.</p></li>
+                <li><p><strong>Soutenance :</strong> Présentation du site et justification des choix.</p></li>
+              </ul>
+              <h3>Outils</h3>
+              <p>Figma · HTML · CSS · JavaScript · Git</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-details-item" data-for="p02">
+          <div class="proj-details-inner">
+            <div class="proj-media"><img src="images/S101.png" alt="Snake dans le terminal"></div>
+            <div class="proj-text">
+              <h3>Objectif du projet</h3>
+              <p>Créer un jeu Snake fonctionnel en terminal selon un cahier des charges client. Le joueur contrôle un serpent qui mange des pommes sans se mordre ni heurter d’obstacles.</p>
+              <h3>Organisation</h3>
+              <p>Projet individuel : gestion de la conception, des tests et de l'implémentation en C.</p>
+              <h3>Étapes de réalisation</h3>
+              <ul>
+                <li><p><strong>Version 1 :</strong> Déplacement du serpent, premières fonctionnalités.</p></li>
+                <li><p><strong>Version 2 :</strong> Ajout croissance du serpent et accélération.</p></li>
+                <li><p><strong>Version 3 :</strong> Intégration d’obstacles et détection de collision.</p></li>
+                <li><p><strong>Version 4 :</strong> Conditions de victoire, peaufinage et tests.</p></li>
+              </ul>
+              <h3>Documentation</h3>
+              <p>Documentation générée avec Doxygen.</p>
+              <h3>Outils</h3>
+              <p>C · Visual Studio Code · Doxygen</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row reverse">
+      <div class="project-item one-third r" data-id="p03">
+        <div class="proj-num">03</div>
+        <div>
+          <div class="proj-cat">Algo & Performance</div>
+          <div class="proj-title">Snake Autonome</div>
+          <div class="proj-sub">C · Pathfinding · Benchmark · Optimisation CPU</div>
+        </div>
+        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
+      </div>
+
+      <div class="project-item two-thirds r" data-id="p04">
+        <div class="proj-num">04</div>
+        <div>
+          <div class="proj-cat">Infrastructure</div>
+          <div class="proj-title">Automatisation Docker</div>
+          <div class="proj-sub">Docker · PHP · Scripts · Environnement reproductible</div>
+        </div>
+        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
+      </div>
+
+      <div class="proj-details" aria-hidden="true">
+        <div class="proj-details-item" data-for="p03">
+          <div class="proj-details-inner">
+            <div class="proj-media"><img src="images/S102.png" alt="Snake autonome"></div>
+            <div class="proj-text">
+              <h3>Objectif du projet</h3>
+              <p>Explorer et comparer différentes approches algorithmiques appliquées à un Snake autonome. Optimiser le nombre de déplacements et le temps CPU requis pour atteindre les pommes sans heurter d'obstacles.</p>
+              <h3>Organisation</h3>
+              <p>Projet mené en binôme : collaboration sur l’idéation, l’implémentation et l’analyse des performances.</p>
+              <h3>Étapes de réalisation</h3>
+              <ul>
+                <li><p><strong>Version 1 :</strong> Algorithme simple dirigeant le serpent vers les pommes.</p></li>
+                <li><p><strong>Version 2 :</strong> Réduction des déplacements inutiles.</p></li>
+                <li><p><strong>Version 3 :</strong> Intégration de contraintes supplémentaires.</p></li>
+                <li><p><strong>Version 4 :</strong> Version finale avec optimisations de performances.</p></li>
+              </ul>
+              <h3>Documentation</h3>
+              <p>Dépôts commentés et rapport d’analyse sur les performances.</p>
+              <h3>Outils</h3>
+              <p>C · Visual Studio Code</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-details-item" data-for="p04">
+          <div class="proj-details-inner">
+            <div class="proj-media"><img src="images/S103.png" alt="Automatisation Docker"></div>
+            <div class="proj-text">
+              <h3>Objectif du projet</h3>
+              <p>Analyser un ensemble de fichiers pour identifier des incohérences, les corriger via Docker, puis automatiser la procédure avec des scripts PHP. Mettre en place un environnement reproductible et efficace.</p>
+              <h3>Organisation</h3>
+              <p>Projet réalisé en groupe : contributions à l’analyse, à la mise en place Docker et au développement des scripts.</p>
+              <h3>Étapes de réalisation</h3>
+              <ul>
+                <li><p><strong>Analyse initiale :</strong> Étude d’un lot de fichiers pour identifier les problèmes.</p></li>
+                <li><p><strong>Correction :</strong> Utilisation d’images Docker adaptées pour modifier les fichiers.</p></li>
+                <li><p><strong>Automatisation :</strong> Développement de scripts PHP pour automatiser les traitements.</p></li>
+              </ul>
+              <h3>Documentation</h3>
+              <p>Documentation technique expliquant l’utilisation des conteneurs et des scripts.</p>
+              <h3>Outils</h3>
+              <p>Docker · PHP</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-row equal">
+      <div class="project-item two-thirds r" data-id="p05">
+        <div class="proj-num">05</div>
+        <div>
+          <div class="proj-cat">Base de données</div>
+          <div class="proj-title">BDD Football</div>
+          <div class="proj-sub">PostgreSQL · UML · Modélisation · SQL avancé</div>
+        </div>
+        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
+      </div>
+
+      <div class="project-item one-third r" data-id="p06">
+        <div class="proj-num">06</div>
+        <div>
+          <div class="proj-cat">Recherche & Équipe</div>
+          <div class="proj-title">Écosystème Numérique & RSE</div>
+          <div class="proj-sub">Travail d'équipe · Recherche documentaire · Soutenance</div>
+        </div>
+        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
+      </div>
+
+      <div class="proj-details" aria-hidden="true">
+        <div class="proj-details-item" data-for="p05">
+          <div class="proj-details-inner">
+            <div class="proj-media"><img src="images/S104.png" alt="BDD Football"></div>
+            <div class="proj-text">
+              <h3>Objectif du projet</h3>
+              <p>Concevoir une base de données relationnelle complète pour gérer championnats de football : clubs, équipes, joueurs, matches et résultats.</p>
+              <h3>Organisation</h3>
+              <p>Projet réalisé en binôme : modélisation conceptuelle puis écriture des scripts SQL.</p>
+              <h3>Étapes de réalisation</h3>
+              <ul>
+                <li><p><strong>Analyse et modélisation :</strong> Diagramme UML et formalisation des règles de gestion.</p></li>
+                <li><p><strong>Implémentation :</strong> Conversion en schéma relationnel et scripts SQL.</p></li>
+                <li><p><strong>Exploitation :</strong> Requêtes SQL (sélection, agrégation, jointures) pour besoins métiers.</p></li>
+              </ul>
+              <h3>Documentation</h3>
+              <p>Rapport détaillé justifiant les choix de modélisation et expliquant la logique des requêtes.</p>
+              <h3>Outils</h3>
+              <p>Visual Paradigm · Draw.io · PostgreSQL</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-details-item" data-for="p06">
+          <div class="proj-details-inner">
+            <div class="proj-media"><img src="images/s106.jpg" alt="Écosystème numérique & RSE"></div>
+            <div class="proj-text">
+              <h3>Objectif du projet</h3>
+              <p>Comprendre l’écosystème numérique, travailler en équipe et analyser la politique RSE d’une organisation. Restitutions écrites et orales synthétiques.</p>
+              <h3>Organisation</h3>
+              <p>Travail en groupe de 4, encadré et en autonomie, avec outils collaboratifs et dépôt Moodle.</p>
+              <h3>Étapes de réalisation</h3>
+              <ul>
+                <li><p><strong>Séance 1 :</strong> Constitution des groupes et planification.</p></li>
+                <li><p><strong>Séance 2 :</strong> Recherche documentaire et diagnostic externe.</p></li>
+                <li><p><strong>Séance 3 :</strong> Soutenance intermédiaire et retours.</p></li>
+                <li><p><strong>Séance 4–7 :</strong> Finalisation, dépôt et soutenance finale.</p></li>
+              </ul>
+              <h3>Documentation</h3>
+              <p>Documentation de groupe guidée par les ressources des unités d’enseignement, avec points réguliers et retours encadrés.</p>
+              <h3>Outils</h3>
+              <p>Outils collaboratifs · Moodle · Supports de cours · Outils de présentation</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </section>
+
+  <!-- ─── PASSIONS ─── -->
+  <section id="passions" class="section">
+    <div class="section-index r">04 — En dehors du code</div>
+    <h2 class="r">Mes<br><em>passions</em></h2>
+    <div class="passions-grid">
+      <div class="passion-card r">
+        <div class="passion-num">01 / 02</div>
+        <div class="passion-title">MUSIQUE<br>BRETONNE</div>
+        <p class="passion-body">Je pratique l'accordéon diatonique et prépare mon CEM au conservatoire. La musique
+          bretonne m'apporte rigueur, sens du rythme et la capacité de travailler sur le long terme.</p>
+        <span class="passion-badge">CEM en cours — Conservatoire</span>
+        <div class="passion-bg" aria-hidden="true">01</div>
+      </div>
+      <div class="passion-card r" style="background:rgba(232,69,26,.05);">
+        <div class="passion-num">02 / 02</div>
+        <div class="passion-title">JEUX<br>VIDÉO</div>
+        <p class="passion-body">Fan de compétition et de dépassement de soi. Classé <strong>#42 mondial sur Brawl
+            Stars</strong> (Squeak). Le jeu compétitif m'a appris la stratégie, l'analyse rapide et la persévérance.</p>
+        <span class="passion-badge">#42 Mondial — Squeak</span>
+        <div class="passion-bg" aria-hidden="true">02</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <div class="section-index r">05 — Contact</div>
+    <h2 class="r">On<br><em>travaille</em><br>ensemble ?</h2>
+    <a class="contact-email-link r" href="mailto:louennig.correc@etudiant.univ-rennes.fr">
+      louennig.correc@etudiant.univ-rennes.fr
+    </a>
+    <dl class="contact-meta r">
+      <div class="contact-meta-item">
+        <dt>Téléphone</dt>
+        <dd>06 83 56 86 18</dd>
+      </div>
+      <div class="contact-meta-item">
+        <dt>Localisation</dt>
+        <dd>Lannion, 22300</dd>
+      </div>
+      <div class="contact-meta-item">
+        <dt>Disponibilité</dt>
+        <dd>Alternance — Sept. 2026</dd>
+      </div>
+    </dl>
+    <div class="socials r">
+      <a class="soc" href="https://www.linkedin.com/in/louennig-correc-4b2439357/" target="_blank">LinkedIn</a>
+      <a class="soc" href="https://github.com/Louennig" target="_blank">GitHub</a>
+      <a class="soc" href="https://www.instagram.com/louennig_crrc/" target="_blank">Instagram</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <span>© 2025 Louennig Correc</span>
+    <span>Lannion, Bretagne</span>
+    <span>BUT Informatique — IUT Lannion</span>
+  </footer>
+
+  <script>
+    // ─── LOADER ───
+    (function () {
+      // prevent browser from restoring previous scroll on reload and force top
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+
+      // disable scrolling while loader is visible
+      const prevHtmlOverflow = document.documentElement.style.overflow;
+      const prevBodyOverflow = document.body.style.overflow;
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+
+      const letters = document.querySelectorAll('#loader-name span:not(#loader-sweep)');
+      const bar = document.getElementById('loader-bar');
+      const pctEl = document.getElementById('loader-pct');
+      const loader = document.getElementById('loader');
+      const nav = document.getElementById('nav');
+
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < letters.length) { letters[i].classList.add('in'); i++; }
+        else { clearInterval(interval); }
+      }, 90);
+
+      // start color change early (overlaps with letter entrance)
+      setTimeout(() => {
+        let k = 0;
+        const colorInterval = setInterval(() => {
+          if (k < letters.length) { letters[k].classList.add('color'); k++; }
+          else clearInterval(colorInterval);
+        }, 110);
+      }, 200);
+
+      setTimeout(() => bar.classList.add('fill'), 150);
+
+      let count = 0;
+      const counter = setInterval(() => {
+        count += Math.floor(Math.random() * 11) + 3;
+        if (count >= 100) { count = 100; clearInterval(counter); }
+        pctEl.textContent = String(count).padStart(3, '0');
+      }, 55);
+
+      setTimeout(() => {
+        loader.classList.add('out');
+        loader.addEventListener('transitionend', () => {
+          loader.style.display = 'none';
+          // restore scrolling
+          document.documentElement.style.overflow = prevHtmlOverflow || '';
+          document.body.style.overflow = prevBodyOverflow || '';
+        }, { once: true });
+        nav.style.opacity = '1';
+        nav.style.transition = 'opacity .6s ease';
+      }, 2300);
+    })();
+
+    // ─── CURSOR ───
+    const cur = document.getElementById('cur');
+    document.addEventListener('mousemove', e => {
+      cur.style.left = e.clientX + 'px';
+      cur.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, .project-item, .passion-card, .exp-item').forEach(el => {
+      el.addEventListener('mouseenter', () => cur.classList.add('big'));
+      el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+    });
+
+    // ─── SCROLL REVEAL ───
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('v'), i * 65);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.r, .rl').forEach(el => obs.observe(el));
+
+    // ─── PARALLAX HERO WORD ───
+    const bgWord = document.querySelector('.hero-bg-word');
+    window.addEventListener('scroll', () => {
+      if (bgWord) bgWord.style.transform = 'translateY(' + (window.scrollY * 0.22) + 'px)';
+    }, { passive: true });
+
+    // ─── ACTIVE NAV ───
+    // ─── ACTIVE NAV ───
+    const secs = document.querySelectorAll('section[id]');
+    const navAs = document.querySelectorAll('.nav-links a');
+
+    function updateActiveNav() {
+      let cur2 = '';
+      secs.forEach(s => { if (window.scrollY >= s.offsetTop - 300) cur2 = s.id; });
+      navAs.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur2 ? 'var(--accent)' : ''; });
+    }
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    window.addEventListener('resize', updateActiveNav);
+    updateActiveNav();
+
+    // ─── PROJECT DROPDOWN TOGGLE ───
+    function setProjToggle(el) {
+      const arrow = el.querySelector('.proj-arrow');
+      const id = el.getAttribute('data-id');
+      const row = el.closest('.project-row');
+      const detailsContainer = row ? row.querySelector('.proj-details') : null;
+      if (!arrow || !detailsContainer) return;
+
+      const toggle = (open) => {
+        const isOpen = typeof open === 'boolean' ? open : !el.classList.contains('open');
+
+        // close other open items when opening this one
+        if (isOpen) {
+          document.querySelectorAll('.project-item.open').forEach(other => {
+            if (other !== el) {
+              other.classList.remove('open');
+              const a = other.querySelector('.proj-arrow');
+              const otherRow = other.closest('.project-row');
+              const otherDetails = otherRow ? otherRow.querySelector('.proj-details') : null;
+              if (a) a.setAttribute('aria-expanded', 'false');
+              if (otherDetails) {
+                otherDetails.setAttribute('aria-hidden', 'true');
+                otherDetails.style.maxHeight = null;
+                // hide any active child inside that container
+                const activeChild = otherDetails.querySelector('.proj-details-item[aria-active="true"]');
+                if (activeChild) { activeChild.removeAttribute('aria-active'); activeChild.style.display = 'none'; }
+              }
+              if (a) a.classList.remove('rotate');
+            }
+          });
+        }
+
+        // find the child details for this project inside the row container
+        const child = detailsContainer.querySelector('.proj-details-item[data-for="' + id + '"]');
+        if (!child) return;
+
+        el.classList.toggle('open', isOpen);
+        arrow.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        detailsContainer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+
+        if (isOpen) {
+          // ensure only this child is visible
+          detailsContainer.querySelectorAll('.proj-details-item').forEach(it => {
+            if (it === child) { it.style.display = 'block'; it.setAttribute('aria-active', 'true'); }
+            else { it.style.display = 'none'; it.removeAttribute('aria-active'); }
+          });
+          // set explicit max-height based on child's content for transition
+          detailsContainer.style.maxHeight = child.scrollHeight + 'px';
+          arrow.classList.add('rotate');
+        } else {
+          detailsContainer.style.maxHeight = null;
+          arrow.classList.remove('rotate');
+          // keep child hidden after closing
+          child.style.display = 'none';
+          child.removeAttribute('aria-active');
+        }
+      };
+
+      arrow.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
+      arrow.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+
+      // allow clicking the whole project row to toggle
+      el.addEventListener('click', (e) => {
+        // ignore clicks that originate from links or buttons inside
+        if (e.target.closest('a') || e.target.closest('button')) return;
+        toggle();
+      });
+    }
+
+    document.querySelectorAll('.project-item').forEach(pi => setProjToggle(pi));
+  </script>
+</body>
+
+</html>

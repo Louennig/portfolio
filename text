@@ -1,0 +1,297 @@
+<!-- Overlay des projets-->
+            <div class="overlay" id="overlay-project1">
+                <div class="overlay-content-project">
+                    <span class="close-btn" onclick="closeOverlay('project1')">&times;</span>
+                    <h1>Snake dans le terminal</h1>
+                    <h2> Compétence 1 : Développer des applications informatiques simples</h2>
+                    <div class="project-article">
+                        <div class="project-section">
+                            <h3>Objectif du projet</h3>
+                            <p>Créer un jeu Snake fonctionnel en terminal selon un cahier des charges client. Le joueur contrôle un serpent qui mange des pommes sans se mordre ni heurter d’obstacles.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Organisation</h3>
+                            <p>Projet individuel : j’ai géré l’ensemble des étapes, de la conception à la documentation, en passant par les tests et l’implémentation en C.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Étapes de réalisation</h3>
+                            <ul>
+                                <li><p><strong>Version 1 :</strong> Déplacement du serpent, premières fonctionnalités de jeu.</p></li>
+                                <li><p><strong>Version 2 :</strong> Ajout de la croissance du serpent et accélération progressive.</p></li>
+                                <li><p><strong>Version 3 :</strong> Intégration d’obstacles et détection de collision.</p></li>
+                                <li><p><strong>Version 4 :</strong> Conditions de victoire, peaufinage et tests.</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Documentation</h3>
+                            <p>Documentation générée avec Doxygen pour faciliter la lecture et la maintenance du code.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Outils et langages utilisés</h3>
+                            <ul>
+                                <li><p>C</p></li>
+                                <li><p>Visual Studio Code</p></li>
+                                <li><p>Doxygen</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Livrables</h3>
+                            <ul>
+                                <li><p>Code source des 4 versions</p></li>
+                                <li><p>Cahiers de tests complets</p></li>
+                                <li><p>Documentation Doxygen</p></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="overlay" id="overlay-project2">
+                <div class="overlay-content-project">
+                    <span class="close-btn" onclick="closeOverlay('project2')">&times;</span>
+                    <h1>Snake autonome</h1>
+                    <h2>Compétence 2 : Appréhender et construire des algorithmes</h2>
+                    <div class="project-article">
+                        <div class="project-section">
+                            <h3>Objectif du projet</h3>
+                            <p>Explorer et comparer différentes approches algorithmiques appliquées à un Snake autonome. Chaque version du programme vise à optimiser le nombre de déplacements et le temps CPU requis pour atteindre les pommes sans heurter d'obstacles.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Organisation</h3>
+                            <p>Projet mené en binôme : nous avons travaillé de manière collaborative sur toutes les étapes, de l’idéation des stratégies jusqu’à leur implémentation, en suivant un cahier des charges évolutif à chaque version.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Étapes de réalisation</h3>
+                            <ul>
+                                <li><p><strong>Version 1 :</strong> Mise en place d’un algorithme simple permettant au serpent de se diriger automatiquement vers les pommes.</p></li>
+                                <li><p><strong>Version 2 :</strong> Amélioration de la stratégie pour réduire le nombre de déplacements inutiles.</p></li>
+                                <li><p><strong>Version 3 :</strong> Intégration de contraintes supplémentaires et ajustements de l’algorithme pour les gérer efficacement.</p></li>
+                                <li><p><strong>Version 4 :</strong> Version finale combinant toutes les contraintes et intégrant des optimisations de performances.</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Documentation</h3>
+                            <p>Chaque version a été accompagnée d’un dépôt commenté et d’un rapport d’analyse sur les performances (temps CPU et nombre de mouvements).</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Outils et langages utilisés</h3>
+                            <ul>
+                                <li><p>C</p></li>
+                                <li><p>Visual Studio Code</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Livrables</h3>
+                            <ul>
+                                <li><p>Code source des 4 versions du Snake autonome</p></li>
+                                <li><p>Rapports de comparaison des performances</p></li>
+                                <li><p>Présentation orale individuelle du projet</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="overlay" id="overlay-project3">
+                <div class="overlay-content-project">
+                    <span class="close-btn" onclick="closeOverlay('project3')">&times;</span>
+                    <h1>Automatisation de traitements avec Docker</h1>
+                    <h2>Compétence 3 : Installer et configurer un poste de travail</h2>
+                    <div class="project-article">
+                        <div class="project-section">
+                            <h3>Objectif du projet</h3>
+                            <p>Analyser un ensemble de fichiers pour identifier des incohérences selon des règles précises, les corriger via un environnement Docker, puis automatiser la procédure avec des scripts PHP. L'objectif : mettre en place un environnement de travail reproductible et efficace.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Organisation</h3>
+                            <p>Projet réalisé en groupe. Chaque membre a contribué à l’analyse des fichiers, à la mise en place de l’environnement Docker et au développement des scripts d’automatisation.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Étapes de réalisation</h3>
+                            <ul>
+                                <li><p><strong>Analyse initiale :</strong> Étude d’un lot de fichiers pour identifier les problèmes selon un cahier des charges fourni.</p></li>
+                                <li><p><strong>Correction :</strong> Utilisation d’images Docker adaptées pour modifier les fichiers afin de répondre aux exigences.</p></li>
+                                <li><p><strong>Automatisation :</strong> Développement de scripts PHP pour automatiser le traitement des fichiers et gagner du temps.</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Documentation</h3>
+                            <p>Une documentation technique interne a été produite pour expliquer l’utilisation des conteneurs Docker et le fonctionnement des scripts d’automatisation.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Outils et langages utilisés</h3>
+                            <ul>
+                                <li><p>Docker</p></li>
+                                <li><p>PHP</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Livrables</h3>
+                            <ul>
+                                <li><p>Scripts PHP d’automatisation</p></li>
+                                <li><p>Conteneurs Docker configurés</p></li>
+                                <li><p>Rapport sur les erreurs détectées et les corrections effectuées</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="overlay" id="overlay-project4">
+                <div class="overlay-content-project">
+                    <span class="close-btn" onclick="closeOverlay('project4')">&times;</span>
+                    <h1>Création d’une base de données pour un championnat de football</h1>
+                    <h2>Compétence 4 : Concevoir et mettre en place une BDD</h2>
+                    <div class="project-article">
+                        <div class="project-section">
+                            <h3>Objectif du projet</h3>
+                            <p>Concevoir une base de données relationnelle complète à partir d’un cahier des charges fourni par un client fictif. La base devait permettre de gérer les données liées aux championnats de football masculin et féminin en France : clubs, équipes, joueurs, matches et résultats.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Organisation</h3>
+                            <p>Le projet a été réalisé en binôme. La répartition des tâches s’est faite naturellement entre la phase de modélisation conceptuelle et l’écriture des scripts SQL.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Étapes de réalisation</h3>
+                            <ul>
+                                <li><p><strong>Analyse et modélisation :</strong> Lecture du cahier des charges, création d’un diagramme UML (classes, associations, cardinalités, dépendances fonctionnelles) et formalisation des règles de gestion.</p></li>
+                                <li><p><strong>Implémentation :</strong> Conversion du modèle conceptuel en schéma relationnel (Tutorial D), puis rédaction d’un script SQL complet pour générer la base de données.</p></li>
+                                <li><p><strong>Exploitation :</strong> Écriture de requêtes SQL (sélection, agrégation, jointures...) pour répondre aux besoins métiers exprimés dans le cahier des charges.</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Documentation</h3>
+                            <p>Un rapport détaillé a été rédigé pour justifier les choix de modélisation, présenter les dépendances fonctionnelles, et expliquer la logique des requêtes.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Outils et langages utilisés</h3>
+                            <ul>
+                                <li><p>Visual Paradigm</p></li>
+                                <li><p>Draw.io</p></li>
+                                <li><p>PostgreSQL</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Livrables</h3>
+                            <ul>
+                                <li><p>Diagrammes de classe UML</p></li>
+                                <li><p>Rapport complet avec dépendances fonctionnelles</p></li>
+                                <li><p>Script SQL de création et réinitialisation de la base</p></li>
+                                <li><p>Script SQL des requêtes métier</p></li>
+                                <li><p>Graphe des contraintes d’intégrité référentielles</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="overlay" id="overlay-project5">
+                <div class="overlay-content-project">
+                    <span class="close-btn" onclick="closeOverlay('project5')">&times;</span>
+                    <h1>Site web JO Paris 2024</h1>
+                    <h2>Compétence 5 : Identifier les besoins métiers des clients et des utilisateurs</h2>
+                    <div class="project-article">
+                        <div class="project-section">
+                            <h3>Objectif du projet</h3>
+                            <p>Concevoir un site web responsive correspondant aux attentes d’un client fictif : Tony Estanguet, président du comité d’organisation des JO 2024. L’objectif : recueillir les besoins, définir les cibles, organiser le contenu, concevoir une charte graphique et des maquettes, puis développer un site respectant les contraintes du cahier des charges.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Organisation</h3>
+                            <p>Projet en équipe de 3 à 4 étudiants. Chacun avait un rôle précis (rédaction, design, développement...). Le travail collaboratif s’est fait via un canal Teams et un dépôt commun sur le serveur de l’IUT, avec des points réguliers pour assurer la coordination.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Étapes de réalisation</h3>
+                            <ul>
+                                <li><p><strong>Expression des besoins :</strong> Rédaction d’une synthèse structurée à partir de l’interview client fictif.</p></li>
+                                <li><p><strong>Choix d’une discipline :</strong> Sélection d’un sport olympique et définition des cibles.</p></li>
+                                <li><p><strong>Arborescence :</strong> Construction d’une structure claire à 3 niveaux maximum, et planification du contenu par page.</p></li>
+                                <li><p><strong>Charte graphique :</strong> Élaboration de couleurs, typographies et styles en cohérence avec l’univers JO.</p></li>
+                                <li><p><strong>Maquettage :</strong> Réalisation de maquettes responsive (smartphone et desktop) sur Figma.</p></li>
+                                <li><p><strong>Développement :</strong> Intégration HTML/CSS, ajout éventuel de JavaScript, et mise en place de la responsivité.</p></li>
+                                <li><p><strong>Soutenance :</strong> Présentation orale avec démonstration du site et justification des choix techniques.</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Documentation</h3>
+                            <p>Une documentation complète a été fournie : besoins client, arborescence, maquettes, charte graphique, et support de soutenance.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Outils et langages utilisés</h3>
+                            <ul>
+                                <li><p>Microsoft Teams (collaboration)</p></li>
+                                <li><p>Figma (maquettage)</p></li>
+                                <li><p>HTML / CSS / JavaScript</p></li>
+                                <li><p>Git (versioning et dépôt)</p></li>
+                                <li><p>Excel, Word (contenus et expression des besoins)</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Livrables</h3>
+                            <ul>
+                                <li><p>Fiche d’expression des besoins (.docx)</p></li>
+                                <li><p>Arborescence et contenu des pages (.xlsx)</p></li>
+                                <li><p>Charte graphique (.pdf)</p></li>
+                                <li><p>Maquettes Figma (desktop et mobile)</p></li>
+                                <li><p>Site responsive final (dépôt Git)</p></li>
+                                <li><p>Support de soutenance (.pptx ou .pdf)</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="overlay" id="overlay-project6">
+                <div class="overlay-content-project">
+                    <span class="close-btn" onclick="closeOverlay('project6')">&times;</span>
+                    <h1>Écosystème numérique & RSE</h1>
+                    <h2>Compétence 6 : Identifier ses aptitudes pour travailler dans une équipe</h2>
+                    <div class="project-article">
+                        <div class="project-section">
+                            <h3>Objectif du projet</h3>
+                            <p>Comprendre l’écosystème numérique, travailler en équipe et identifier ses aptitudes relationnelles. Le projet comprenait aussi l’analyse d’une organisation au travers d’un diagnostic externe et d’une étude sur sa politique RSE, avec une restitution écrite et orale synthétique.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Organisation</h3>
+                            <p>Travail en groupe de 4 étudiants, avec répartition des tâches collaborative. Le suivi s’est fait en partie encadré (4 séances en présentiel) et en partie en autonomie, à l’aide d’outils de partage et d’un espace Moodle. Projet supervisé par trois enseignants référents.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Étapes de réalisation</h3>
+                            <ul>
+                                <li><p><strong>Séance 1 :</strong> Constitution des groupes, présentation des objectifs, mise en place de l’organisation et planification des recherches.</p></li>
+                                <li><p><strong>Séance 2 :</strong> Recherche documentaire sur l’organisation choisie, diagnostic externe, étude de la politique RSE et dépôt du support pour la soutenance intermédiaire.</p></li>
+                                <li><p><strong>Séance 3 :</strong> Soutenance orale intermédiaire et échanges avec l'enseignant pour améliorer le travail.</p></li>
+                                <li><p><strong>Séance 4 :</strong> Finalisation des recherches, élaboration de la synthèse et début de la rédaction du dossier.</p></li>
+                                <li><p><strong>Séance 5 :</strong> Derniers ajustements, dépôt du dossier sur Moodle et approfondissement de la réflexion autour de l’impact environnemental du numérique.</p></li>
+                                <li><p><strong>Séance 6 :</strong> Corrections finales et préparation de la soutenance finale (10 minutes par groupe).</p></li>
+                                <li><p><strong>Séance 7 :</strong> Soutenance orale finale devant l’enseignant avec évaluation du travail d’équipe et du contenu.</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Documentation</h3>
+                            <p>Le projet repose sur une documentation produite en groupe et guidée par les ressources des unités d’enseignement (R1.08, R1.09, R1.11), avec un accompagnement régulier des enseignants et un retour à chaque étape clé.</p>
+                        </div>
+                        <div class="project-section">
+                            <h3>Outils et supports utilisés</h3>
+                            <ul>
+                                <li><p>Outils collaboratifs (partage de fichiers, organisation des tâches)</p></li>
+                                <li><p>Moodle (dépôt des supports et communication des consignes)</p></li>
+                                <li><p>Supports de cours et ressources R1.08 / R1.09 / R1.11</p></li>
+                                <li><p>Outils de présentation en ligne (PowerPoint, Google Slides...)</p></li>
+                            </ul>
+                        </div>
+                        <div class="project-section">
+                            <h3>Livrables</h3>
+                            <ul>
+                                <li><p>Support visuel de la soutenance intermédiaire (Séance 3)</p></li>
+                                <li><p>Dossier écrit final (Séance 6)</p></li>
+                                <li><p>Support visuel de la soutenance finale (Séance 7)</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
