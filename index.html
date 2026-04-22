@@ -638,13 +638,19 @@ a, button { cursor: none; } */
       gap: 3rem;
       align-items: center;
       padding: 2.6rem 0;
-      border-bottom: 1px solid rgba(240, 237, 230, .08);
-      /*cursor: none;*/
+      border-bottom: none;
       position: relative;
-      overflow: hidden;
-      transition: padding-left .4s ease;
+      overflow: visible;
+      transition: padding-left .4s ease, backdrop-filter .28s ease, background .28s ease, border-color .28s ease;
       cursor: pointer;
       align-self: start;
+      /* stronger glass effect */
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.28);
     }
 
     /* Row container with two columns: main (1.6fr) and side (1fr). Use .reverse to swap columns. */
@@ -683,9 +689,11 @@ a, button { cursor: none; } */
       top: 0;
       bottom: 0;
       width: 0;
-      background: rgba(214,111,90,.18); /* stronger, more red and visible */
-      transition: width .4s ease;
+      background: rgba(214,111,90,.08);
+      transition: width .4s ease, opacity .28s ease;
       z-index: 0;
+      border-radius: 12px;
+      pointer-events: none;
     }
 
     .project-item:hover {
@@ -751,15 +759,18 @@ a, button { cursor: none; } */
     .proj-details {
       max-height: 0;
       overflow: hidden;
-      transition: max-height .36s ease, padding .36s ease, opacity .24s ease;
-      border-top: 1px solid rgba(240,237,230,.06);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius: 10px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+      transition: max-height .36s ease, padding .36s ease, opacity .24s ease, backdrop-filter .28s ease;
+      border-top: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+      border-radius: 14px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.28);
       margin-top: 1rem;
       grid-column: 1 / -1; /* span full width of the project-item grid */
       width: 100%;
       box-sizing: border-box;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.06);
     }
 
     .proj-details-item { display: none; }
@@ -1114,9 +1125,9 @@ a, button { cursor: none; } */
     /* Make the word "fait" black in the projects heading */
     #projects h2 em { color: var(--ink); }
 
-    /* Darker borders to better separate project items */
-    #projects .project-item { border-bottom: 1px solid rgba(0,0,0,.18); }
-    #projects .proj-details { border-top: 1px solid rgba(0,0,0,.12); }
+    /* Removed thin gray separators — using glass cards instead */
+    #projects .project-item { border-bottom: none; }
+    #projects .proj-details { border-top: none; }
 
     /* Keep hover overlay visible when a project is open */
     #projects .project-item.open::before { width: 100%; opacity: 1; }
@@ -1371,7 +1382,7 @@ a, button { cursor: none; } */
         <div>
           <div class="proj-cat">Algo & Performance</div>
           <div class="proj-title">Snake Autonome</div>
-          <div class="proj-sub">C · Pathfinding · Benchmark · Optimisation CPU</div>
+          <div class="proj-sub">C · Optimisation CPU</div>
         </div>
         <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
       </div>
