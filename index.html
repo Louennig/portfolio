@@ -437,7 +437,7 @@ a, button { cursor: none; } */
     }
 
     .about-photo {
-      width: clamp(180px, 26vw, 340px);
+      width: clamp(320px, 36vw, 560px);
       background: rgba(240, 237, 230, .05);
       border: 1px solid rgba(240, 237, 230, .1);
       display: block;
@@ -624,236 +624,354 @@ a, button { cursor: none; } */
       color: var(--paper);
     }
 
-    #projects h2 {
-      color: var(--paper);
+    #projects h2 { color: var(--paper); }
+    #projects .section-index { color: rgba(240, 237, 230, .95); }
+
+    /* ── Browser UI wrapper ── */
+    .browser-ui {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+      background: #1e1e1e;
     }
 
-    #projects .section-index {
-      color: rgba(240, 237, 230, .95);
+    /* ── Chrome / top bar ── */
+    .browser-chrome {
+      background: #2a2a2a;
+      padding: 0;
+      user-select: none;
     }
 
-    .project-item {
-      display: grid;
-      grid-template-columns: 72px 1fr auto;
-      gap: 3rem;
+    /* Traffic lights */
+    .browser-dots {
+      display: flex;
       align-items: center;
-      padding: 2.6rem 0;
+      gap: 7px;
+      padding: 10px 14px 0;
+    }
+    .browser-dots span {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      display: block;
+    }
+    .browser-dots .dot-r { background: #ff5f57; }
+    .browser-dots .dot-y { background: #febc2e; }
+    .browser-dots .dot-g { background: #28c840; }
+
+    /* Tab strip */
+    .browser-tabs {
+      display: flex;
+      align-items: flex-end;
+      gap: 0;
+      padding: 8px 10px 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .browser-tabs::-webkit-scrollbar { display: none; }
+
+    .browser-tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px 9px;
+      border-radius: 8px 8px 0 0;
+      background: #3a3a3a;
+      color: rgba(255,255,255,.45);
+      font-size: .7rem;
+      letter-spacing: .04em;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .2s, color .2s;
+      max-width: 180px;
+      min-width: 100px;
+      border: 1px solid rgba(255,255,255,.06);
       border-bottom: none;
       position: relative;
-      overflow: visible;
-      transition: padding-left .4s ease, backdrop-filter .28s ease, background .28s ease, border-color .28s ease;
-      cursor: pointer;
-      align-self: start;
-      /* stronger glass effect */
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.28);
-    }
-
-    /* Row container with two columns: main (1.6fr) and side (1fr). Use .reverse to swap columns. */
-    .project-row {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      gap: 2.5rem;
-      align-items: start;
-      width: 100%;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-row.reverse { grid-template-columns: 1fr 1.6fr; }
-
-    /* allow forcing an equal split for a specific row */
-    .project-row.equal { grid-template-columns: 1fr 1fr; }
-    .project-row.equal .project-item.one-third { min-width: 0; }
-
-    .project-item.two-thirds { grid-column: 1 / 2; }
-    .project-item.one-third { grid-column: 2 / 3; }
-
-    /* reverse rows swap grid columns for items */
-    .project-row.reverse .project-item.two-thirds { grid-column: 2 / 3; }
-    .project-row.reverse .project-item.one-third { grid-column: 1 / 2; }
-
-    /* make the smaller column slightly larger with a minimum width */
-    .project-item.one-third { min-width: 260px; }
-
-    /* proj-details as full-width rows inside project-row */
-    .project-row .proj-details { grid-column: 1 / -1; margin-top: 1rem; }
-
-    .project-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 0;
-      background: rgba(214,111,90,.08);
-      transition: width .4s ease, opacity .28s ease;
-      z-index: 0;
-      border-radius: 12px;
-      pointer-events: none;
-    }
-
-    .project-item:hover {
-      padding-left: 1.4rem;
-    }
-
-    /* Keep the hover padding when the project is open */
-    .project-item.open {
-      padding-left: 1.4rem;
-    }
-
-    .project-item:hover::before {
-      width: 100%;
-    }
-
-    .project-item>* {
-      position: relative;
-      z-index: 1;
-    }
-
-    .proj-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      color: rgba(240, 237, 230, .18);
-      letter-spacing: .1em;
-    }
-
-    .proj-cat {
-      font-size: .6rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: .5rem;
-    }
-
-    .proj-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      color: var(--paper);
-      line-height: 1;
-    }
-
-    .proj-sub {
-      font-size: .76rem;
-      color: rgba(240, 237, 230, .32);
-      margin-top: .4rem;
-    }
-
-    .proj-arrow {
-      width: 46px;
-      height: 46px;
-      border: 1px solid rgba(240, 237, 230, .14);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(240, 237, 230, .3);
-      font-size: 1.1rem;
-      transition: all .3s;
       flex-shrink: 0;
     }
+    .browser-tab:hover { background: #484848; color: rgba(255,255,255,.7); }
+    .browser-tab.active {
+      background: #1e1e1e;
+      color: rgba(255,255,255,.92);
+      border-color: rgba(255,255,255,.1);
+    }
+    .browser-tab .tab-favicon {
+      width: 14px; height: 14px;
+      border-radius: 3px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .55rem;
+      color: white;
+      flex-shrink: 0;
+    }
+    .browser-tab.search-tab .tab-favicon { background: #5f6368; }
+    .browser-tab .tab-label { overflow: hidden; text-overflow: ellipsis; flex: 1; }
+    .browser-tab .tab-close {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .6rem;
+      opacity: 0;
+      transition: opacity .15s, background .15s;
+      flex-shrink: 0;
+      color: rgba(255,255,255,.6);
+    }
+    .browser-tab:hover .tab-close { opacity: 1; }
+    .browser-tab .tab-close:hover { background: rgba(255,255,255,.12); }
+    .browser-tab.search-tab .tab-close { display: none; }
 
-    /* Dropdown details for projects */
-    .proj-details {
-      max-height: 0;
+    /* Address bar */
+    .browser-address-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px 10px;
+      background: #2a2a2a;
+    }
+    .browser-nav-btns {
+      display: flex; gap: 4px;
+    }
+    .browser-nav-btns button {
+      width: 26px; height: 26px;
+      background: transparent;
+      border: none;
+      border-radius: 50%;
+      color: rgba(255,255,255,.35);
+      font-size: .85rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s, color .15s;
+    }
+    .browser-nav-btns button:hover { background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); }
+    .browser-nav-btns button:disabled { opacity: .2; cursor: default; }
+    .browser-url {
+      flex: 1;
+      background: #3c3c3c;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      padding: 5px 14px;
+      color: rgba(255,255,255,.75);
+      font-size: .72rem;
+      letter-spacing: .02em;
+      display: flex; align-items: center; gap: 6px;
       overflow: hidden;
-      transition: max-height .36s ease, padding .36s ease, opacity .24s ease, backdrop-filter .28s ease;
-      border-top: none;
-      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
-      border-radius: 14px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.28);
-      margin-top: 1rem;
-      grid-column: 1 / -1; /* span full width of the project-item grid */
-      width: 100%;
-      box-sizing: border-box;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,0.06);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .browser-url .url-lock { color: #4ade80; font-size: .65rem; flex-shrink: 0; }
+    .browser-url .url-text { overflow: hidden; text-overflow: ellipsis; }
+    .browser-url .url-text .url-host { color: rgba(255,255,255,.9); }
+
+    /* ── Content area ── */
+    .browser-content {
+      background: #141414;
+      min-height: 480px;
+      position: relative;
     }
 
-    .proj-details-item { display: none; }
-    .proj-details-item[aria-active="true"] { display: block; }
+    /* Search page (default tab) */
+    .browser-page {
+      display: none;
+      width: 100%;
+      animation: pageIn .22s ease;
+    }
+    .browser-page.active { display: block; }
 
-    .proj-details-inner {
-      padding: .9rem 1rem 1rem 1rem;
-      color: rgba(240, 237, 230, .95);
-      font-size: .95rem;
-      line-height: 1.7;
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Search results page */
+    .search-page {
+      padding: 3rem 3.5rem;
+      color: rgba(255,255,255,.85);
+    }
+    .search-bar-fake {
+      display: flex; align-items: center; gap: 12px;
+      background: #2a2a2a;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 26px;
+      padding: 12px 20px;
+      margin-bottom: 2.2rem;
+      max-width: 680px;
+    }
+    .search-bar-fake .s-icon { color: rgba(255,255,255,.35); font-size: 1rem; }
+    .search-bar-fake .s-query {
+      font-size: .88rem;
+      color: rgba(255,255,255,.85);
+      flex: 1;
+    }
+    .search-bar-fake .s-clear {
+      color: rgba(255,255,255,.25);
+      font-size: .8rem;
+    }
+    .search-results-meta {
+      font-size: .68rem;
+      color: rgba(255,255,255,.3);
+      letter-spacing: .08em;
+      margin-bottom: 1.8rem;
+    }
+    .search-results-meta span { color: rgba(255,255,255,.5); }
+
+    /* Result cards */
+    .search-results { display: flex; flex-direction: column; gap: 0; }
+    .search-result {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      cursor: pointer;
+      transition: background .18s;
+      border-radius: 8px;
+      padding-left: .8rem;
+      padding-right: .8rem;
+    }
+    .search-result:last-child { border-bottom: none; }
+    .search-result:hover { background: rgba(255,255,255,.04); }
+    .search-result .sr-breadcrumb {
+      display: flex; align-items: center; gap: 6px;
+      font-size: .62rem;
+      color: rgba(255,255,255,.25);
+      letter-spacing: .06em;
+      margin-bottom: .35rem;
+    }
+    .search-result .sr-breadcrumb .sr-favicon {
+      width: 14px; height: 14px;
+      background: var(--accent);
+      border-radius: 3px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue'; font-size: .5rem;
+      color: #fff; flex-shrink: 0;
+    }
+    .search-result .sr-title {
+      font-size: 1.05rem;
+      color: #8ab4f8;
+      font-weight: 400;
+      margin-bottom: .3rem;
+      line-height: 1.3;
+    }
+    .search-result:hover .sr-title { text-decoration: underline; }
+    .search-result .sr-desc {
+      font-size: .78rem;
+      color: rgba(255,255,255,.45);
+      line-height: 1.65;
+    }
+    .search-result .sr-tags {
+      display: flex; flex-wrap: wrap; gap: .4rem;
+      margin-top: .55rem;
+    }
+    .search-result .sr-tag {
+      font-size: .58rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.1);
+      color: rgba(255,255,255,.3);
+      padding: .2rem .55rem;
+      border-radius: 3px;
+    }
+
+    /* Project detail page */
+    .project-page {
+      padding: 2.5rem 3.5rem;
+      color: rgba(255,255,255,.88);
+    }
+    .project-page .pp-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      gap: 2rem;
+    }
+    .project-page .pp-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .85rem;
+      color: rgba(255,255,255,.18);
+      letter-spacing: .15em;
+      margin-bottom: .4rem;
+    }
+    .project-page .pp-cat {
+      font-size: .6rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .6rem;
+    }
+    .project-page .pp-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1;
+      color: #fff;
+    }
+    .project-page .pp-sub {
+      font-size: .75rem;
+      color: rgba(255,255,255,.35);
+      margin-top: .5rem;
+    }
+    .project-page .pp-grid {
       display: grid;
-      grid-template-columns: 160px 1fr; /* slightly larger media column */
-      gap: 1.25rem;
+      grid-template-columns: 260px 1fr;
+      gap: 2rem;
       align-items: start;
     }
-
-    .proj-details .project-section { margin-bottom: .9rem; }
-    .proj-details .project-section h3 { margin-bottom: .45rem; font-size: 1rem; color: var(--paper); }
-    .proj-details .project-section p, .proj-details .project-section li p { margin: 0; color: rgba(240,237,230,.9); }
-    .proj-details .project-section ul { margin: .4rem 0 0 1.1rem; }
-    .proj-details .project-section ul li { margin-bottom: .35rem; }
-
-    .proj-arrow:hover { cursor: pointer; }
-
-    .proj-media img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; }
-    .proj-media { width: 100%; height: 100%; max-height: 160px; overflow: hidden; }
+    .project-page .pp-img img {
+      width: 100%; border-radius: 10px;
+      display: block;
+    }
+    .project-page .pp-img .pp-img-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: rgba(255,255,255,.04);
+      border: 1px dashed rgba(255,255,255,.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.15);
+      font-size: .7rem;
+      letter-spacing: .12em;
+    }
+    .project-page .pp-body h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.55);
+      margin: 1.5rem 0 .5rem;
+      text-transform: uppercase;
+    }
+    .project-page .pp-body h3:first-child { margin-top: 0; }
+    .project-page .pp-body p {
+      font-size: .82rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,.6);
+    }
+    .project-page .pp-body ul {
+      margin-left: 1.1rem;
+      margin-top: .3rem;
+    }
+    .project-page .pp-body ul li {
+      font-size: .8rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,.55);
+      margin-bottom: .2rem;
+    }
+    .project-page .pp-body ul li strong { color: rgba(255,255,255,.82); font-weight: 500; }
+    .project-page .pp-tools {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      margin-top: 1.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .project-page .pp-tool {
+      font-size: .62rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.45);
+      padding: .28rem .7rem;
+      border-radius: 4px;
+    }
 
     @media (max-width: 768px) {
-      .proj-details-inner { grid-template-columns: 1fr; }
-      .proj-media { max-height: 220px; }
-    }
-
-    /* dropdown entrance animation */
-    @keyframes dropdownIn {
-      from { opacity: 0; transform: translateY(-6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .project-item.open ~ .proj-details .proj-details-inner { animation: dropdownIn .28s ease both; }
-
-    /* subtle border and spacing for the text column */
-    .proj-text { padding-right: .4rem; }
-    .proj-text h3 { margin-top: 0; margin-bottom: .35rem; color: var(--paper); font-size: 1rem; }
-    .proj-text ul { margin-left: 1rem; }
-
-    .project-item.open ~ .proj-details {
-      padding-bottom: 1rem;
-      opacity: 1;
-    }
-
-    .proj-arrow.rotate {
-      transform: rotate(90deg);
-    }
-
-    .project-item:hover .proj-arrow {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .project-imgs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      margin-top: 2px;
-    }
-
-    .img-ph {
-      aspect-ratio: 16/9;
-      background: rgba(240, 237, 230, .03);
-      border: 1px dashed rgba(240, 237, 230, .1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: .7rem;
-      color: rgba(240, 237, 230, .18);
-      font-size: .65rem;
-      letter-spacing: .1em;
-      text-align: center;
-    }
-
-    .img-ph svg {
-      opacity: .25;
+      .search-page { padding: 2rem 1.2rem; }
+      .project-page { padding: 1.5rem 1.2rem; }
+      .project-page .pp-grid { grid-template-columns: 1fr; }
+      .browser-tab { min-width: 80px; }
     }
 
     /* ─── PASSIONS ─── */
@@ -1101,39 +1219,8 @@ a, button { cursor: none; } */
       }
     }
 
-    /* Projects-on-accent overrides (keeps original rules intact, overrides for contrast) */
-    #projects .project-item::before {
-      background: linear-gradient(90deg, rgba(0,0,0,.06), rgba(0,0,0,.02));
-      transition: width .35s cubic-bezier(.2,.9,.2,1), opacity .25s;
-      opacity: .95;
-    }
-
-    #projects .proj-cat { color: var(--paper); opacity: .95; }
-    #projects .proj-sub { color: rgba(240,237,230,.8); }
-    #projects .proj-num { color: rgba(240,237,230,.28); }
-
-    #projects .proj-arrow {
-      border-color: rgba(240, 237, 230, .18);
-      color: rgba(240, 237, 230, .95);
-      background: transparent;
-    }
-
-    #projects .project-item:hover::before { width: 100%; opacity: 1; }
-    #projects .project-item:hover .proj-arrow { border-color: rgba(240,237,230,.95); color: rgba(240,237,230,.95); }
-
-    /* New tweaks requested */
     /* Make the word "fait" black in the projects heading */
     #projects h2 em { color: var(--ink); }
-
-    /* Removed thin gray separators — using glass cards instead */
-    #projects .project-item { border-bottom: none; }
-    #projects .proj-details { border-top: none; }
-
-    /* Keep hover overlay visible when a project is open */
-    #projects .project-item.open::before { width: 100%; opacity: 1; }
-
-    /* Add breathing room to the right of the arrow */
-    #projects .proj-arrow { margin-right: .8rem; }
   </style>
 </head>
 
@@ -1210,7 +1297,7 @@ a, button { cursor: none; } */
       </div>
       <div class="r">
         <p class="about-lead">
-          J'ai 19 ans, étudiant en <strong>2ème année de BUT d'informatique</strong> à l'IUT de Lannion. Je crée des interfaces
+          J'ai 20 ans, étudiant en <strong>2ème année de BUT d'informatique</strong> à l'IUT de Lannion. Je crée des interfaces
           où technique et esthétique se complètent.
         </p>
         <p class="about-body">
@@ -1238,7 +1325,7 @@ a, button { cursor: none; } */
             <dd><a href="#contact">Alternance — Sept. 2026</a></dd>
           </div>
         </dl>
-        <a href="https://louennig.github.io/portfolio/ressources/CV_LCORREC_STAGE.pdf" target="_blank"
+        <a href="images/Correc_Louennig_CV.pdf" target="_blank"
           class="cv-link">Télécharger mon CV →</a>
       </div>
     </div>
@@ -1308,213 +1395,165 @@ a, button { cursor: none; } */
     <div class="section-index r">03 — Projets</div>
     <h2 class="r">Ce que<br>j'ai <em>fait</em></h2>
 
-    <div class="project-row">
-      <div class="project-item two-thirds r" data-id="p01">
-        <div class="proj-num">01</div>
-        <div>
-          <div class="proj-cat">Interface & Design</div>
-          <div class="proj-title">Site JO Paris 2024</div>
-          <div class="proj-sub">Figma · HTML/CSS/JS · Responsive · Charte graphique</div>
+    <!-- Browser UI -->
+    <div class="browser-ui r">
+
+      <!-- Chrome top bar -->
+      <div class="browser-chrome">
+        <div class="browser-dots">
+          <span class="dot-r"></span>
+          <span class="dot-y"></span>
+          <span class="dot-g"></span>
         </div>
-        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
+        <div class="browser-tabs" id="browser-tabs">
+          <div class="browser-tab search-tab active" data-page="search">
+            <div class="tab-favicon">
+            </div>
+            <span class="tab-label">Projets — Louennig</span>
+          </div>
+        </div>
+        <div class="browser-address-bar">
+          <div class="browser-nav-btns">
+            <button id="btn-back" title="Retour" disabled>←</button>
+            <button id="btn-fwd" title="Suivant" disabled>→</button>
+          </div>
+          <div class="browser-url">
+            <span class="url-lock"></span>
+            <span class="url-text" id="url-text">
+              <span class="url-host">louennig.dev</span>/projets
+            </span>
+          </div>
+        </div>
       </div>
 
-      <div class="project-item one-third r" data-id="p02">
-        <div class="proj-num">02</div>
-        <div>
-          <div class="proj-cat">Algorithmique — C</div>
-          <div class="proj-title">Snake en Terminal</div>
-          <div class="proj-sub">C · Doxygen · 4 versions progressives</div>
-        </div>
-        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
-      </div>
+      <!-- Content area -->
+      <div class="browser-content">
 
-      <div class="proj-details" aria-hidden="true">
-        <div class="proj-details-item" data-for="p01">
-          <div class="proj-details-inner">
-            <div class="proj-media"><img src="images/S105.jpg" alt="Site JO Paris 2024"></div>
-            <div class="proj-text">
-              <h3>Objectif du projet</h3>
-              <p>Concevoir un site web responsive correspondant aux attentes d’un client fictif : Tony Estanguet, président du comité d’organisation des JO 2024. L’objectif : recueillir les besoins, définir les cibles, organiser le contenu, concevoir une charte graphique et des maquettes, puis développer un site respectant les contraintes du cahier des charges.</p>
-              <h3>Organisation</h3>
-              <p>Projet en équipe de 3 à 4 étudiants. Chacun avait un rôle précis (rédaction, design, développement...). Travail collaboratif via Teams et dépôt Git avec points réguliers.</p>
-              <h3>Étapes de réalisation</h3>
-              <ul>
-                <li><p><strong>Expression des besoins :</strong> Rédaction d’une synthèse à partir de l’interview client fictif.</p></li>
-                <li><p><strong>Maquettage :</strong> Maquettes responsive sur Figma.</p></li>
-                <li><p><strong>Développement :</strong> Intégration HTML/CSS/JS et mise en place de la responsivité.</p></li>
-                <li><p><strong>Soutenance :</strong> Présentation du site et justification des choix.</p></li>
-              </ul>
-              <h3>Outils</h3>
-              <p>Figma · HTML · CSS · JavaScript · Git</p>
+        <!-- Search page (default) -->
+        <div class="browser-page active" id="page-search">
+          <div class="search-page">
+            <div class="search-bar-fake">
+              <span class="s-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+              </span>
+              <span class="s-query">projets louennig correc</span>
+              <span class="s-clear">✕</span>
+            </div>
+            <div class="search-results-meta">Environ <span>6 ou 7 résultats ¯\_(ツ)_/¯</span></div>
+            <div class="search-results">
+
+              <div class="search-result" data-project="p01">
+                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › jo-paris-2024</div>
+                <div class="sr-title">Site JO Paris 2024 — Interface &amp; Design</div>
+                <div class="sr-desc">Site web responsive conçu pour les JO 2024 — maquettes Figma, charte graphique, HTML/CSS/JS. Projet équipe de 3–4 personnes.</div>
+                <div class="sr-tags"><span class="sr-tag">Figma</span><span class="sr-tag">HTML/CSS/JS</span><span class="sr-tag">Responsive</span></div>
+              </div>
+
+              <div class="search-result" data-project="p02">
+                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › snake-terminal</div>
+                <div class="sr-title">Snake en Terminal — Algorithmique C</div>
+                <div class="sr-desc">Jeu Snake fonctionnel en terminal en langage C — 4 versions progressives, documentation Doxygen. Projet individuel.</div>
+                <div class="sr-tags"><span class="sr-tag">C</span><span class="sr-tag">Doxygen</span><span class="sr-tag">Algorithmique</span></div>
+              </div>
+
+              <div class="search-result" data-project="p03">
+                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › snake-autonome</div>
+                <div class="sr-title">Snake Autonome — Algo &amp; Performance</div>
+                <div class="sr-desc">Exploration et comparaison d'approches algorithmiques sur un Snake autonome. Optimisation du nombre de déplacements et du temps CPU.</div>
+                <div class="sr-tags"><span class="sr-tag">C</span><span class="sr-tag">Optimisation CPU</span></div>
+              </div>
+
+              <div class="search-result" data-project="p04">
+                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › docker-automatisation</div>
+                <div class="sr-title">Automatisation Docker — Infrastructure</div>
+                <div class="sr-desc">Analyse de fichiers, correction via Docker, automatisation par scripts PHP. Mise en place d'un environnement reproductible.</div>
+                <div class="sr-tags"><span class="sr-tag">Docker</span><span class="sr-tag">PHP</span><span class="sr-tag">Scripting</span></div>
+              </div>
+
+              <div class="search-result" data-project="p05">
+                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › bdd-football</div>
+                <div class="sr-title">BDD Football — Base de données relationnelle</div>
+                <div class="sr-desc">Conception d'une base de données PostgreSQL complète pour gérer championnats, clubs, joueurs et résultats. Modélisation UML.</div>
+                <div class="sr-tags"><span class="sr-tag">PostgreSQL</span><span class="sr-tag">UML</span><span class="sr-tag">SQL avancé</span></div>
+              </div>
+
+              <div class="search-result" data-project="p06">
+                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › ecosysteme-rse</div>
+                <div class="sr-title">Écosystème Numérique &amp; RSE — Recherche &amp; Équipe</div>
+                <div class="sr-desc">Analyse de la politique RSE d'une organisation, restitutions écrites et orales. Travail collaboratif en groupe de 4.</div>
+                <div class="sr-tags"><span class="sr-tag">Travail d'équipe</span><span class="sr-tag">Recherche</span><span class="sr-tag">Soutenance</span></div>
+              </div>
+
             </div>
           </div>
         </div>
 
-        <div class="proj-details-item" data-for="p02">
-          <div class="proj-details-inner">
-            <div class="proj-media"><img src="images/S101.png" alt="Snake dans le terminal"></div>
-            <div class="proj-text">
-              <h3>Objectif du projet</h3>
-              <p>Créer un jeu Snake fonctionnel en terminal selon un cahier des charges client. Le joueur contrôle un serpent qui mange des pommes sans se mordre ni heurter d’obstacles.</p>
-              <h3>Organisation</h3>
-              <p>Projet individuel : gestion de la conception, des tests et de l'implémentation en C.</p>
-              <h3>Étapes de réalisation</h3>
-              <ul>
-                <li><p><strong>Version 1 :</strong> Déplacement du serpent, premières fonctionnalités.</p></li>
-                <li><p><strong>Version 2 :</strong> Ajout croissance du serpent et accélération.</p></li>
-                <li><p><strong>Version 3 :</strong> Intégration d’obstacles et détection de collision.</p></li>
-                <li><p><strong>Version 4 :</strong> Conditions de victoire, peaufinage et tests.</p></li>
-              </ul>
-              <h3>Documentation</h3>
-              <p>Documentation générée avec Doxygen.</p>
-              <h3>Outils</h3>
-              <p>C · Visual Studio Code · Doxygen</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <!-- Project pages container (populated by JS) -->
+        <div id="project-pages-container"></div>
 
-    <div class="project-row reverse">
-      <div class="project-item one-third r" data-id="p03">
-        <div class="proj-num">03</div>
-        <div>
-          <div class="proj-cat">Algo & Performance</div>
-          <div class="proj-title">Snake Autonome</div>
-          <div class="proj-sub">C · Optimisation CPU</div>
-        </div>
-        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
+      </div><!-- /browser-content -->
+    </div><!-- /browser-ui -->
+
+    <!-- Hidden project data -->
+    <div id="project-data" style="display:none">
+
+      <div data-id="p01" data-title="Site JO Paris 2024" data-cat="Interface &amp; Design" data-num="01"
+           data-sub="Figma · HTML/CSS/JS · Responsive · Charte graphique" data-url="louennig.dev/projets/jo-paris-2024" data-img="images/S105.jpg">
+        <h3>Objectif du projet</h3><p>Concevoir un site web responsive pour un client fictif : Tony Estanguet, président du comité d'organisation des JO 2024. Recueillir les besoins, définir les cibles, organiser le contenu, concevoir une charte graphique et des maquettes, puis développer le site.</p>
+        <h3>Organisation</h3><p>Projet en équipe de 3 à 4 étudiants. Chacun avait un rôle précis (rédaction, design, développement). Travail collaboratif via Teams et dépôt Git avec points réguliers.</p>
+        <h3>Étapes de réalisation</h3><ul><li><strong>Expression des besoins :</strong> Rédaction d'une synthèse à partir de l'interview client fictif.</li><li><strong>Maquettage :</strong> Maquettes responsive sur Figma.</li><li><strong>Développement :</strong> Intégration HTML/CSS/JS et mise en place de la responsivité.</li><li><strong>Soutenance :</strong> Présentation du site et justification des choix.</li></ul>
+        <div class="pp-tools"><span class="pp-tool">Figma</span><span class="pp-tool">HTML</span><span class="pp-tool">CSS</span><span class="pp-tool">JavaScript</span><span class="pp-tool">Git</span></div>
       </div>
 
-      <div class="project-item two-thirds r" data-id="p04">
-        <div class="proj-num">04</div>
-        <div>
-          <div class="proj-cat">Infrastructure</div>
-          <div class="proj-title">Automatisation Docker</div>
-          <div class="proj-sub">Docker · PHP · Scripts · Environnement reproductible</div>
-        </div>
-        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
+      <div data-id="p02" data-title="Snake en Terminal" data-cat="Algorithmique — C" data-num="02"
+           data-sub="C · Doxygen · 4 versions progressives" data-url="louennig.dev/projets/snake-terminal" data-img="images/S101.png">
+        <h3>Objectif du projet</h3><p>Créer un jeu Snake fonctionnel en terminal selon un cahier des charges client. Le joueur contrôle un serpent qui mange des pommes sans se mordre ni heurter d'obstacles.</p>
+        <h3>Organisation</h3><p>Projet individuel : gestion de la conception, des tests et de l'implémentation en C.</p>
+        <h3>Étapes de réalisation</h3><ul><li><strong>Version 1 :</strong> Déplacement du serpent, premières fonctionnalités.</li><li><strong>Version 2 :</strong> Ajout croissance du serpent et accélération.</li><li><strong>Version 3 :</strong> Intégration d'obstacles et détection de collision.</li><li><strong>Version 4 :</strong> Conditions de victoire, peaufinage et tests.</li></ul>
+        <h3>Documentation</h3><p>Documentation générée avec Doxygen.</p>
+        <div class="pp-tools"><span class="pp-tool">C</span><span class="pp-tool">Visual Studio Code</span><span class="pp-tool">Doxygen</span></div>
       </div>
 
-      <div class="proj-details" aria-hidden="true">
-        <div class="proj-details-item" data-for="p03">
-          <div class="proj-details-inner">
-            <div class="proj-media"><img src="images/S102.png" alt="Snake autonome"></div>
-            <div class="proj-text">
-              <h3>Objectif du projet</h3>
-              <p>Explorer et comparer différentes approches algorithmiques appliquées à un Snake autonome. Optimiser le nombre de déplacements et le temps CPU requis pour atteindre les pommes sans heurter d'obstacles.</p>
-              <h3>Organisation</h3>
-              <p>Projet mené en binôme : collaboration sur l’idéation, l’implémentation et l’analyse des performances.</p>
-              <h3>Étapes de réalisation</h3>
-              <ul>
-                <li><p><strong>Version 1 :</strong> Algorithme simple dirigeant le serpent vers les pommes.</p></li>
-                <li><p><strong>Version 2 :</strong> Réduction des déplacements inutiles.</p></li>
-                <li><p><strong>Version 3 :</strong> Intégration de contraintes supplémentaires.</p></li>
-                <li><p><strong>Version 4 :</strong> Version finale avec optimisations de performances.</p></li>
-              </ul>
-              <h3>Documentation</h3>
-              <p>Dépôts commentés et rapport d’analyse sur les performances.</p>
-              <h3>Outils</h3>
-              <p>C · Visual Studio Code</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="proj-details-item" data-for="p04">
-          <div class="proj-details-inner">
-            <div class="proj-media"><img src="images/S103.png" alt="Automatisation Docker"></div>
-            <div class="proj-text">
-              <h3>Objectif du projet</h3>
-              <p>Analyser un ensemble de fichiers pour identifier des incohérences, les corriger via Docker, puis automatiser la procédure avec des scripts PHP. Mettre en place un environnement reproductible et efficace.</p>
-              <h3>Organisation</h3>
-              <p>Projet réalisé en groupe : contributions à l’analyse, à la mise en place Docker et au développement des scripts.</p>
-              <h3>Étapes de réalisation</h3>
-              <ul>
-                <li><p><strong>Analyse initiale :</strong> Étude d’un lot de fichiers pour identifier les problèmes.</p></li>
-                <li><p><strong>Correction :</strong> Utilisation d’images Docker adaptées pour modifier les fichiers.</p></li>
-                <li><p><strong>Automatisation :</strong> Développement de scripts PHP pour automatiser les traitements.</p></li>
-              </ul>
-              <h3>Documentation</h3>
-              <p>Documentation technique expliquant l’utilisation des conteneurs et des scripts.</p>
-              <h3>Outils</h3>
-              <p>Docker · PHP</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-row equal">
-      <div class="project-item two-thirds r" data-id="p05">
-        <div class="proj-num">05</div>
-        <div>
-          <div class="proj-cat">Base de données</div>
-          <div class="proj-title">BDD Football</div>
-          <div class="proj-sub">PostgreSQL · UML · Modélisation · SQL avancé</div>
-        </div>
-        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
+      <div data-id="p03" data-title="Snake Autonome" data-cat="Algo &amp; Performance" data-num="03"
+           data-sub="C · Optimisation CPU" data-url="louennig.dev/projets/snake-autonome" data-img="images/S102.png">
+        <h3>Objectif du projet</h3><p>Explorer et comparer différentes approches algorithmiques appliquées à un Snake autonome. Optimiser le nombre de déplacements et le temps CPU requis pour atteindre les pommes sans heurter d'obstacles.</p>
+        <h3>Organisation</h3><p>Projet mené en binôme : collaboration sur l'idéation, l'implémentation et l'analyse des performances.</p>
+        <h3>Étapes de réalisation</h3><ul><li><strong>Version 1 :</strong> Algorithme simple dirigeant le serpent vers les pommes.</li><li><strong>Version 2 :</strong> Réduction des déplacements inutiles.</li><li><strong>Version 3 :</strong> Intégration de contraintes supplémentaires.</li><li><strong>Version 4 :</strong> Version finale avec optimisations de performances.</li></ul>
+        <h3>Documentation</h3><p>Dépôts commentés et rapport d'analyse sur les performances.</p>
+        <div class="pp-tools"><span class="pp-tool">C</span><span class="pp-tool">Visual Studio Code</span></div>
       </div>
 
-      <div class="project-item one-third r" data-id="p06">
-        <div class="proj-num">06</div>
-        <div>
-          <div class="proj-cat">Recherche & Équipe</div>
-          <div class="proj-title">Écosystème Numérique & RSE</div>
-          <div class="proj-sub">Travail d'équipe · Recherche documentaire · Soutenance</div>
-        </div>
-        <div class="proj-arrow" role="button" tabindex="0" aria-expanded="false">→</div>
+      <div data-id="p04" data-title="Automatisation Docker" data-cat="Infrastructure" data-num="04"
+           data-sub="Docker · PHP · Scripts · Environnement reproductible" data-url="louennig.dev/projets/docker-automatisation" data-img="images/S103.png">
+        <h3>Objectif du projet</h3><p>Analyser un ensemble de fichiers pour identifier des incohérences, les corriger via Docker, puis automatiser la procédure avec des scripts PHP. Mettre en place un environnement reproductible et efficace.</p>
+        <h3>Organisation</h3><p>Projet réalisé en groupe : contributions à l'analyse, à la mise en place Docker et au développement des scripts.</p>
+        <h3>Étapes de réalisation</h3><ul><li><strong>Analyse initiale :</strong> Étude d'un lot de fichiers pour identifier les problèmes.</li><li><strong>Correction :</strong> Utilisation d'images Docker adaptées pour modifier les fichiers.</li><li><strong>Automatisation :</strong> Développement de scripts PHP pour automatiser les traitements.</li></ul>
+        <h3>Documentation</h3><p>Documentation technique expliquant l'utilisation des conteneurs et des scripts.</p>
+        <div class="pp-tools"><span class="pp-tool">Docker</span><span class="pp-tool">PHP</span></div>
       </div>
 
-      <div class="proj-details" aria-hidden="true">
-        <div class="proj-details-item" data-for="p05">
-          <div class="proj-details-inner">
-            <div class="proj-media"><img src="images/S104.png" alt="BDD Football"></div>
-            <div class="proj-text">
-              <h3>Objectif du projet</h3>
-              <p>Concevoir une base de données relationnelle complète pour gérer championnats de football : clubs, équipes, joueurs, matches et résultats.</p>
-              <h3>Organisation</h3>
-              <p>Projet réalisé en binôme : modélisation conceptuelle puis écriture des scripts SQL.</p>
-              <h3>Étapes de réalisation</h3>
-              <ul>
-                <li><p><strong>Analyse et modélisation :</strong> Diagramme UML et formalisation des règles de gestion.</p></li>
-                <li><p><strong>Implémentation :</strong> Conversion en schéma relationnel et scripts SQL.</p></li>
-                <li><p><strong>Exploitation :</strong> Requêtes SQL (sélection, agrégation, jointures) pour besoins métiers.</p></li>
-              </ul>
-              <h3>Documentation</h3>
-              <p>Rapport détaillé justifiant les choix de modélisation et expliquant la logique des requêtes.</p>
-              <h3>Outils</h3>
-              <p>Visual Paradigm · Draw.io · PostgreSQL</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="proj-details-item" data-for="p06">
-          <div class="proj-details-inner">
-            <div class="proj-media"><img src="images/s106.jpg" alt="Écosystème numérique & RSE"></div>
-            <div class="proj-text">
-              <h3>Objectif du projet</h3>
-              <p>Comprendre l’écosystème numérique, travailler en équipe et analyser la politique RSE d’une organisation. Restitutions écrites et orales synthétiques.</p>
-              <h3>Organisation</h3>
-              <p>Travail en groupe de 4, encadré et en autonomie, avec outils collaboratifs et dépôt Moodle.</p>
-              <h3>Étapes de réalisation</h3>
-              <ul>
-                <li><p><strong>Séance 1 :</strong> Constitution des groupes et planification.</p></li>
-                <li><p><strong>Séance 2 :</strong> Recherche documentaire et diagnostic externe.</p></li>
-                <li><p><strong>Séance 3 :</strong> Soutenance intermédiaire et retours.</p></li>
-                <li><p><strong>Séance 4–7 :</strong> Finalisation, dépôt et soutenance finale.</p></li>
-              </ul>
-              <h3>Documentation</h3>
-              <p>Documentation de groupe guidée par les ressources des unités d’enseignement, avec points réguliers et retours encadrés.</p>
-              <h3>Outils</h3>
-              <p>Outils collaboratifs · Moodle · Supports de cours · Outils de présentation</p>
-            </div>
-          </div>
-        </div>
+      <div data-id="p05" data-title="BDD Football" data-cat="Base de données" data-num="05"
+           data-sub="PostgreSQL · UML · Modélisation · SQL avancé" data-url="louennig.dev/projets/bdd-football" data-img="images/S104.png">
+        <h3>Objectif du projet</h3><p>Concevoir une base de données relationnelle complète pour gérer championnats de football : clubs, équipes, joueurs, matches et résultats.</p>
+        <h3>Organisation</h3><p>Projet réalisé en binôme : modélisation conceptuelle puis écriture des scripts SQL.</p>
+        <h3>Étapes de réalisation</h3><ul><li><strong>Analyse et modélisation :</strong> Diagramme UML et formalisation des règles de gestion.</li><li><strong>Implémentation :</strong> Conversion en schéma relationnel et scripts SQL.</li><li><strong>Exploitation :</strong> Requêtes SQL (sélection, agrégation, jointures) pour besoins métiers.</li></ul>
+        <h3>Documentation</h3><p>Rapport détaillé justifiant les choix de modélisation et expliquant la logique des requêtes.</p>
+        <div class="pp-tools"><span class="pp-tool">Visual Paradigm</span><span class="pp-tool">Draw.io</span><span class="pp-tool">PostgreSQL</span></div>
       </div>
-    </div>
 
-    
+      <div data-id="p06" data-title="Écosystème Numérique &amp; RSE" data-cat="Recherche &amp; Équipe" data-num="06"
+           data-sub="Travail d'équipe · Recherche documentaire · Soutenance" data-url="louennig.dev/projets/ecosysteme-rse" data-img="images/s106.jpg">
+        <h3>Objectif du projet</h3><p>Comprendre l'écosystème numérique, travailler en équipe et analyser la politique RSE d'une organisation. Restitutions écrites et orales synthétiques.</p>
+        <h3>Organisation</h3><p>Travail en groupe de 4, encadré et en autonomie, avec outils collaboratifs et dépôt Moodle.</p>
+        <h3>Étapes de réalisation</h3><ul><li><strong>Séance 1 :</strong> Constitution des groupes et planification.</li><li><strong>Séance 2 :</strong> Recherche documentaire et diagnostic externe.</li><li><strong>Séance 3 :</strong> Soutenance intermédiaire et retours.</li><li><strong>Séances 4–7 :</strong> Finalisation, dépôt et soutenance finale.</li></ul>
+        <h3>Documentation</h3><p>Documentation de groupe guidée par les ressources des unités d'enseignement, avec points réguliers.</p>
+        <div class="pp-tools"><span class="pp-tool">Outils collaboratifs</span><span class="pp-tool">Moodle</span><span class="pp-tool">Présentation</span></div>
+      </div>
+
+    </div><!-- /project-data -->
+
   </section>
 
   <!-- ─── PASSIONS ─── -->
@@ -1675,78 +1714,178 @@ a, button { cursor: none; } */
     window.addEventListener('resize', updateActiveNav);
     updateActiveNav();
 
-    // ─── PROJECT DROPDOWN TOGGLE ───
-    function setProjToggle(el) {
-      const arrow = el.querySelector('.proj-arrow');
-      const id = el.getAttribute('data-id');
-      const row = el.closest('.project-row');
-      const detailsContainer = row ? row.querySelector('.proj-details') : null;
-      if (!arrow || !detailsContainer) return;
+    // ─── BROWSER PROJECT UI ───
+    (function () {
+      const tabsContainer = document.getElementById('browser-tabs');
+      const pagesContainer = document.getElementById('project-pages-container');
+      const urlText = document.getElementById('url-text');
+      const btnBack = document.getElementById('btn-back');
+      const btnFwd = document.getElementById('btn-fwd');
 
-      const toggle = (open) => {
-        const isOpen = typeof open === 'boolean' ? open : !el.classList.contains('open');
+      // Read project data
+      const dataEls = document.querySelectorAll('#project-data [data-id]');
+      const projects = {};
+      dataEls.forEach(el => {
+        const id = el.getAttribute('data-id');
+        projects[id] = {
+          id,
+          title: el.getAttribute('data-title'),
+          cat: el.getAttribute('data-cat'),
+          num: el.getAttribute('data-num'),
+          sub: el.getAttribute('data-sub'),
+          url: el.getAttribute('data-url'),
+          img: el.getAttribute('data-img'),
+          bodyHTML: el.innerHTML
+        };
+      });
 
-        // close other open items when opening this one
-        if (isOpen) {
-          document.querySelectorAll('.project-item.open').forEach(other => {
-            if (other !== el) {
-              other.classList.remove('open');
-              const a = other.querySelector('.proj-arrow');
-              const otherRow = other.closest('.project-row');
-              const otherDetails = otherRow ? otherRow.querySelector('.proj-details') : null;
-              if (a) a.setAttribute('aria-expanded', 'false');
-              if (otherDetails) {
-                otherDetails.setAttribute('aria-hidden', 'true');
-                otherDetails.style.maxHeight = null;
-                // hide any active child inside that container
-                const activeChild = otherDetails.querySelector('.proj-details-item[aria-active="true"]');
-                if (activeChild) { activeChild.removeAttribute('aria-active'); activeChild.style.display = 'none'; }
-              }
-              if (a) a.classList.remove('rotate');
-            }
-          });
-        }
+      // Tab/page state
+      let openTabs = []; // [{id, label}]
+      let activeTab = 'search';
+      let history = ['search'];
+      let historyIdx = 0;
 
-        // find the child details for this project inside the row container
-        const child = detailsContainer.querySelector('.proj-details-item[data-for="' + id + '"]');
-        if (!child) return;
+      function setUrl(url) {
+        urlText.innerHTML = '<span class="url-lock"></span> <span class="url-text"><span class="url-host">louennig.dev</span>/' + url + '</span>';
+      }
 
-        el.classList.toggle('open', isOpen);
-        arrow.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        detailsContainer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+      function updateNavBtns() {
+        btnBack.disabled = historyIdx <= 0;
+        btnFwd.disabled = historyIdx >= history.length - 1;
+      }
 
-        if (isOpen) {
-          // ensure only this child is visible
-          detailsContainer.querySelectorAll('.proj-details-item').forEach(it => {
-            if (it === child) { it.style.display = 'block'; it.setAttribute('aria-active', 'true'); }
-            else { it.style.display = 'none'; it.removeAttribute('aria-active'); }
-          });
-          // set explicit max-height based on child's content for transition
-          detailsContainer.style.maxHeight = child.scrollHeight + 'px';
-          arrow.classList.add('rotate');
+      function activatePage(pageId, pushHistory) {
+        // Update tabs
+        document.querySelectorAll('.browser-tab').forEach(t => t.classList.remove('active'));
+        const targetTab = document.querySelector('.browser-tab[data-page="' + pageId + '"]');
+        if (targetTab) targetTab.classList.add('active');
+
+        // Update pages
+        document.querySelectorAll('.browser-page').forEach(p => p.classList.remove('active'));
+        const targetPage = document.getElementById('page-' + pageId);
+        if (targetPage) targetPage.classList.add('active');
+
+        // Update URL
+        if (pageId === 'search') {
+          urlText.innerHTML = '<span class="url-lock"></span> <span class="url-text"><span class="url-host">louennig.dev</span>/projets</span>';
         } else {
-          detailsContainer.style.maxHeight = null;
-          arrow.classList.remove('rotate');
-          // keep child hidden after closing
-          child.style.display = 'none';
-          child.removeAttribute('aria-active');
+          const proj = projects[pageId];
+          if (proj) {
+            urlText.innerHTML = '<span class="url-lock"></span> <span class="url-text"><span class="url-host">louennig.dev</span>/' + proj.url.replace('louennig.dev/', '') + '</span>';
+          }
         }
-      };
 
-      arrow.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
-      arrow.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        activeTab = pageId;
+
+        if (pushHistory) {
+          history = history.slice(0, historyIdx + 1);
+          history.push(pageId);
+          historyIdx = history.length - 1;
+        }
+        updateNavBtns();
+      }
+
+      function openProject(id) {
+        const proj = projects[id];
+        if (!proj) return;
+
+        // Create tab if not exists
+        if (!document.querySelector('.browser-tab[data-page="' + id + '"]')) {
+          const tab = document.createElement('div');
+          tab.className = 'browser-tab';
+          tab.setAttribute('data-page', id);
+          tab.innerHTML =
+            '<div class="tab-favicon">' + proj.num + '</div>' +
+            '<span class="tab-label">' + proj.title + '</span>' +
+            '<span class="tab-close" title="Fermer">✕</span>';
+
+          tab.querySelector('.tab-close').addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeTab(id);
+          });
+          tab.addEventListener('click', function() { activatePage(id, true); });
+          tabsContainer.appendChild(tab);
+
+          // Create page
+          const page = document.createElement('div');
+          page.className = 'browser-page';
+          page.id = 'page-' + id;
+
+          const imgHtml = proj.img
+            ? '<img src="' + proj.img + '" alt="' + proj.title + '">'
+            : '<div class="pp-img-placeholder">Aperçu</div>';
+
+          page.innerHTML =
+            '<div class="project-page">' +
+              '<div class="pp-header">' +
+                '<div>' +
+                  '<div class="pp-num">' + proj.num + ' / 06</div>' +
+                  '<div class="pp-cat">' + proj.cat + '</div>' +
+                  '<div class="pp-title">' + proj.title + '</div>' +
+                  '<div class="pp-sub">' + proj.sub + '</div>' +
+                '</div>' +
+              '</div>' +
+              '<div class="pp-grid">' +
+                '<div class="pp-img">' + imgHtml + '</div>' +
+                '<div class="pp-body">' + proj.bodyHTML + '</div>' +
+              '</div>' +
+            '</div>';
+
+          pagesContainer.appendChild(page);
+        }
+
+        activatePage(id, true);
+
+        // Scroll tabs to show new tab
+        const newTab = document.querySelector('.browser-tab[data-page="' + id + '"]');
+        if (newTab) newTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'end' });
+      }
+
+      function closeTab(id) {
+        const tab = document.querySelector('.browser-tab[data-page="' + id + '"]');
+        const page = document.getElementById('page-' + id);
+        if (tab) tab.remove();
+        if (page) page.remove();
+
+        // If we closed the active tab, go back to search or last open
+        if (activeTab === id) {
+          activatePage('search', true);
+        }
+
+        // Clean history
+        history = history.filter(h => h !== id);
+        historyIdx = Math.min(historyIdx, history.length - 1);
+        updateNavBtns();
+      }
+
+      // Search result clicks
+      document.querySelectorAll('.search-result[data-project]').forEach(el => {
+        el.addEventListener('click', function() {
+          openProject(this.getAttribute('data-project'));
+        });
       });
 
-      // allow clicking the whole project row to toggle
-      el.addEventListener('click', (e) => {
-        // ignore clicks that originate from links or buttons inside
-        if (e.target.closest('a') || e.target.closest('button')) return;
-        toggle();
+      // Search tab click
+      document.querySelector('.browser-tab.search-tab').addEventListener('click', function() {
+        activatePage('search', true);
       });
-    }
 
-    document.querySelectorAll('.project-item').forEach(pi => setProjToggle(pi));
+      // Back / Fwd
+      btnBack.addEventListener('click', function() {
+        if (historyIdx > 0) {
+          historyIdx--;
+          activatePage(history[historyIdx], false);
+        }
+      });
+      btnFwd.addEventListener('click', function() {
+        if (historyIdx < history.length - 1) {
+          historyIdx++;
+          activatePage(history[historyIdx], false);
+        }
+      });
+
+      updateNavBtns();
+    })();
   </script>
 </body>
 
