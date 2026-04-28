@@ -11,12 +11,26 @@
     rel="stylesheet">
 
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4EJL2M7FQ0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-4EJL2M7FQ0');
+  </script>
+
+
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-PKB6ZCHS');</script>
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PKB6ZCHS');</script>
   <!-- End Google Tag Manager -->
   <style>
     *,
@@ -30,8 +44,8 @@
     :root {
       --ink: #0a0a0a;
       --paper: #f0ede6;
-      --accent: #ef233c; 
-      --mid: #7a7570;
+      --accent: #ef233c;
+      --mid: #5a5550;
     }
 
     html {
@@ -104,7 +118,9 @@ a, button { cursor: none; } */
     }
 
     /* hide the previous sweep element (we now color per-letter) */
-    #loader-sweep { display: none; }
+    #loader-sweep {
+      display: none;
+    }
 
     #loader-bar {
       width: 420px;
@@ -145,7 +161,7 @@ a, button { cursor: none; } */
       width: 0;
       background: var(--accent);
       z-index: 3;
-      transition: width .7s cubic-bezier(.2,.9,.2,1);
+      transition: width .7s cubic-bezier(.2, .9, .2, 1);
       pointer-events: none;
     }
 
@@ -187,12 +203,12 @@ a, button { cursor: none; } */
     }
 
     .nav-links a {
-      font-size: .68rem;
+      font-size: .78rem;
       letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--ink);
       text-decoration: none;
-      font-weight: 400;
+      font-weight: 500;
       transition: color .18s;
     }
 
@@ -205,7 +221,7 @@ a, button { cursor: none; } */
       min-height: 100svh;
       display: grid;
       place-items: end;
-      padding: 0 4rem 5rem;
+      padding: 6rem 4rem 5rem;
       position: relative;
       overflow: hidden;
     }
@@ -228,13 +244,14 @@ a, button { cursor: none; } */
       position: relative;
       z-index: 1;
       width: 100%;
+      padding-top: 5rem;
     }
 
     .hero-tag {
-      font-size: .68rem;
+      font-size: .78rem;
       letter-spacing: .3em;
       text-transform: uppercase;
-      color: var(--mid);
+      color: #4a4540;
       margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
@@ -291,9 +308,9 @@ a, button { cursor: none; } */
     }
 
     .hero-desc {
-      font-size: .88rem;
+      font-size: 1rem;
       line-height: 1.85;
-      color: var(--mid);
+      color: #4a4540;
       max-width: 320px;
     }
 
@@ -301,7 +318,7 @@ a, button { cursor: none; } */
       display: inline-flex;
       align-items: center;
       gap: .8rem;
-      font-size: .7rem;
+      font-size: .82rem;
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--ink);
@@ -376,10 +393,10 @@ a, button { cursor: none; } */
     }
 
     .section-index {
-      font-size: .6rem;
+      font-size: .72rem;
       letter-spacing: .35em;
       text-transform: uppercase;
-      color: var(--mid);
+      color: #5a5550;
       margin-bottom: .8rem;
     }
 
@@ -431,7 +448,7 @@ a, button { cursor: none; } */
     }
 
     #about .section-index {
-      color: rgba(240, 237, 230, .3);
+      color: rgba(240, 237, 230, .5);
     }
 
     .about-grid {
@@ -450,7 +467,8 @@ a, button { cursor: none; } */
       background: rgba(240, 237, 230, .05);
       border: 1px solid rgba(240, 237, 230, .1);
       display: block;
-      padding: 5px; /* espace entre le cadre et la photo */
+      padding: 5px;
+      /* espace entre le cadre et la photo */
       box-sizing: border-box;
       color: rgba(240, 237, 230, .18);
       font-size: .68rem;
@@ -458,7 +476,8 @@ a, button { cursor: none; } */
       text-align: center;
       overflow: hidden;
       position: relative;
-      border-radius: 14px; /* arrondi du cadre */
+      border-radius: 14px;
+      /* arrondi du cadre */
       margin: 0 auto;
     }
 
@@ -467,7 +486,8 @@ a, button { cursor: none; } */
       height: auto;
       object-fit: cover;
       display: block;
-      border-radius: inherit; /* même arrondi que le cadre */
+      border-radius: inherit;
+      /* même arrondi que le cadre */
       position: static;
     }
 
@@ -475,10 +495,10 @@ a, button { cursor: none; } */
       position: absolute;
       bottom: -1.8rem;
       left: 0;
-      font-size: .6rem;
+      font-size: .68rem;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: rgba(240, 237, 230, .2);
+      color: rgba(240, 237, 230, .4);
     }
 
     .about-lead {
@@ -495,9 +515,9 @@ a, button { cursor: none; } */
     }
 
     .about-body {
-      font-size: .85rem;
+      font-size: .95rem;
       line-height: 2;
-      color: rgba(240, 237, 230, .4);
+      color: rgba(240, 237, 230, .65);
       margin-bottom: 3rem;
     }
 
@@ -511,15 +531,15 @@ a, button { cursor: none; } */
     }
 
     .about-dl dt {
-      font-size: .6rem;
+      font-size: .7rem;
       letter-spacing: .25em;
       text-transform: uppercase;
-      color: rgba(240, 237, 230, .28);
+      color: rgba(240, 237, 230, .5);
       margin-bottom: .4rem;
     }
 
     .about-dl dd {
-      font-size: .85rem;
+      font-size: .95rem;
       color: var(--paper);
     }
 
@@ -532,7 +552,7 @@ a, button { cursor: none; } */
       display: inline-flex;
       align-items: center;
       gap: .8rem;
-      font-size: .7rem;
+      font-size: .82rem;
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--paper);
@@ -573,16 +593,16 @@ a, button { cursor: none; } */
     }
 
     .exp-period {
-      font-size: .68rem;
+      font-size: .78rem;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--mid);
+      color: #4a4540;
       padding-top: .3rem;
       line-height: 1.8;
     }
 
     .exp-company-name {
-      font-size: .6rem;
+      font-size: .7rem;
       letter-spacing: .22em;
       text-transform: uppercase;
       color: var(--accent);
@@ -605,11 +625,11 @@ a, button { cursor: none; } */
     }
 
     .exp-tag {
-      font-size: .58rem;
+      font-size: .68rem;
       letter-spacing: .12em;
       text-transform: uppercase;
-      border: 1px solid rgba(10, 10, 10, .15);
-      color: var(--mid);
+      border: 1px solid rgba(10, 10, 10, .2);
+      color: #4a4540;
       padding: .28rem .65rem;
       transition: all .2s;
     }
@@ -620,9 +640,9 @@ a, button { cursor: none; } */
     }
 
     .exp-desc {
-      font-size: .83rem;
+      font-size: .92rem;
       line-height: 1.9;
-      color: var(--mid);
+      color: #4a4540;
       padding-top: .3rem;
     }
 
@@ -633,14 +653,19 @@ a, button { cursor: none; } */
       color: var(--paper);
     }
 
-    #projects h2 { color: var(--paper); }
-    #projects .section-index { color: rgba(240, 237, 230, .95); }
+    #projects h2 {
+      color: var(--paper);
+    }
+
+    #projects .section-index {
+      color: rgba(240, 237, 230, 1);
+    }
 
     /* ── Browser UI wrapper ── */
     .browser-ui {
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
       background: #1e1e1e;
     }
 
@@ -658,14 +683,25 @@ a, button { cursor: none; } */
       gap: 7px;
       padding: 10px 14px 0;
     }
+
     .browser-dots span {
-      width: 12px; height: 12px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       display: block;
     }
-    .browser-dots .dot-r { background: #ff5f57; }
-    .browser-dots .dot-y { background: #febc2e; }
-    .browser-dots .dot-g { background: #28c840; }
+
+    .browser-dots .dot-r {
+      background: #ff5f57;
+    }
+
+    .browser-dots .dot-y {
+      background: #febc2e;
+    }
+
+    .browser-dots .dot-g {
+      background: #28c840;
+    }
 
     /* Tab strip */
     .browser-tabs {
@@ -676,7 +712,10 @@ a, button { cursor: none; } */
       overflow-x: auto;
       scrollbar-width: none;
     }
-    .browser-tabs::-webkit-scrollbar { display: none; }
+
+    .browser-tabs::-webkit-scrollbar {
+      display: none;
+    }
 
     .browser-tab {
       display: flex;
@@ -685,50 +724,79 @@ a, button { cursor: none; } */
       padding: 8px 14px 9px;
       border-radius: 8px 8px 0 0;
       background: #3a3a3a;
-      color: rgba(255,255,255,.45);
-      font-size: .7rem;
-      letter-spacing: .04em;
-      cursor: pointer;
-      white-space: nowrap;
+      color: rgba(255, 255, 255, .45);
+      font-size: .78rem;
       transition: background .2s, color .2s;
       max-width: 180px;
       min-width: 100px;
-      border: 1px solid rgba(255,255,255,.06);
+      border: 1px solid rgba(255, 255, 255, .06);
       border-bottom: none;
       position: relative;
       flex-shrink: 0;
     }
-    .browser-tab:hover { background: #484848; color: rgba(255,255,255,.7); }
+
+    .browser-tab:hover {
+      background: #484848;
+      color: rgba(255, 255, 255, .7);
+    }
+
     .browser-tab.active {
       background: #1e1e1e;
-      color: rgba(255,255,255,.92);
-      border-color: rgba(255,255,255,.1);
+      color: rgba(255, 255, 255, .92);
+      border-color: rgba(255, 255, 255, .1);
     }
+
     .browser-tab .tab-favicon {
-      width: 14px; height: 14px;
+      width: 14px;
+      height: 14px;
       border-radius: 3px;
       background: var(--accent);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: 'Bebas Neue', sans-serif;
       font-size: .55rem;
       color: white;
       flex-shrink: 0;
     }
-    .browser-tab.search-tab .tab-favicon { background: #5f6368; }
-    .browser-tab .tab-label { overflow: hidden; text-overflow: ellipsis; flex: 1; }
+
+    .browser-tab.search-tab .tab-favicon {
+      background: #5f6368;
+    }
+
+    .browser-tab .tab-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+      min-width: 0;
+    }
+
     .browser-tab .tab-close {
-      width: 16px; height: 16px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: .6rem;
       opacity: 0;
       transition: opacity .15s, background .15s;
       flex-shrink: 0;
-      color: rgba(255,255,255,.6);
+      color: rgba(255, 255, 255, .6);
     }
-    .browser-tab:hover .tab-close { opacity: 1; }
-    .browser-tab .tab-close:hover { background: rgba(255,255,255,.12); }
-    .browser-tab.search-tab .tab-close { display: none; }
+
+    .browser-tab:hover .tab-close {
+      opacity: 1;
+    }
+
+    .browser-tab .tab-close:hover {
+      background: rgba(255, 255, 255, .12);
+    }
+
+    .browser-tab.search-tab .tab-close {
+      display: none;
+    }
 
     /* Address bar */
     .browser-address-bar {
@@ -738,39 +806,68 @@ a, button { cursor: none; } */
       padding: 8px 14px 10px;
       background: #2a2a2a;
     }
+
     .browser-nav-btns {
-      display: flex; gap: 4px;
+      display: flex;
+      gap: 4px;
     }
+
     .browser-nav-btns button {
-      width: 26px; height: 26px;
+      width: 26px;
+      height: 26px;
       background: transparent;
       border: none;
       border-radius: 50%;
-      color: rgba(255,255,255,.35);
+      color: rgba(255, 255, 255, .35);
       font-size: .85rem;
       cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: background .15s, color .15s;
     }
-    .browser-nav-btns button:hover { background: rgba(255,255,255,.08); color: rgba(255,255,255,.7); }
-    .browser-nav-btns button:disabled { opacity: .2; cursor: default; }
+
+    .browser-nav-btns button:hover {
+      background: rgba(255, 255, 255, .08);
+      color: rgba(255, 255, 255, .7);
+    }
+
+    .browser-nav-btns button:disabled {
+      opacity: .2;
+      cursor: default;
+    }
+
     .browser-url {
       flex: 1;
       background: #3c3c3c;
-      border: 1px solid rgba(255,255,255,.08);
+      border: 1px solid rgba(255, 255, 255, .08);
       border-radius: 20px;
       padding: 5px 14px;
-      color: rgba(255,255,255,.75);
+      color: rgba(255, 255, 255, .75);
       font-size: .72rem;
       letter-spacing: .02em;
-      display: flex; align-items: center; gap: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
-    .browser-url .url-lock { color: #4ade80; font-size: .65rem; flex-shrink: 0; }
-    .browser-url .url-text { overflow: hidden; text-overflow: ellipsis; }
-    .browser-url .url-text .url-host { color: rgba(255,255,255,.9); }
+
+    .browser-url .url-lock {
+      color: #4ade80;
+      font-size: .65rem;
+      flex-shrink: 0;
+    }
+
+    .browser-url .url-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .browser-url .url-text .url-host {
+      color: rgba(255, 255, 255, .9);
+    }
 
     /* ── Content area ── */
     .browser-content {
@@ -785,73 +882,117 @@ a, button { cursor: none; } */
       width: 100%;
       animation: pageIn .22s ease;
     }
-    .browser-page.active { display: block; }
+
+    .browser-page.active {
+      display: block;
+    }
 
     @keyframes pageIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Search results page */
     .search-page {
       padding: 3rem 3.5rem;
-      color: rgba(255,255,255,.85);
+      color: rgba(255, 255, 255, .85);
     }
+
     .search-bar-fake {
-      display: flex; align-items: center; gap: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       background: #2a2a2a;
-      border: 1px solid rgba(255,255,255,.1);
+      border: 1px solid rgba(255, 255, 255, .1);
       border-radius: 26px;
       padding: 12px 20px;
       margin-bottom: 2.2rem;
       max-width: 680px;
     }
-    .search-bar-fake .s-icon { color: rgba(255,255,255,.35); font-size: 1rem; }
+
+    .search-bar-fake .s-icon {
+      color: rgba(255, 255, 255, .35);
+      font-size: 1rem;
+    }
+
     .search-bar-fake .s-query {
-      font-size: .88rem;
-      color: rgba(255,255,255,.85);
+      font-size: .95rem;
+      color: rgba(255, 255, 255, .9);
       flex: 1;
     }
+
     .search-bar-fake .s-clear {
-      color: rgba(255,255,255,.25);
-      font-size: .8rem;
+      color: rgba(255, 255, 255, .4);
+      font-size: .85rem;
     }
+
     .search-results-meta {
-      font-size: .68rem;
-      color: rgba(255,255,255,.3);
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .45);
       letter-spacing: .08em;
       margin-bottom: 1.8rem;
     }
-    .search-results-meta span { color: rgba(255,255,255,.5); }
+
+    .search-results-meta span {
+      color: rgba(255, 255, 255, .65);
+    }
 
     /* Result cards */
-    .search-results { display: flex; flex-direction: column; gap: 0; }
+    .search-results {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
     .search-result {
       padding: 1.2rem 0;
-      border-bottom: 1px solid rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(255, 255, 255, .05);
       cursor: pointer;
       transition: background .18s;
       border-radius: 8px;
       padding-left: .8rem;
       padding-right: .8rem;
     }
-    .search-result:last-child { border-bottom: none; }
-    .search-result:hover { background: rgba(255,255,255,.04); }
+
+    .search-result:last-child {
+      border-bottom: none;
+    }
+
+    .search-result:hover {
+      background: rgba(255, 255, 255, .04);
+    }
+
     .search-result .sr-breadcrumb {
-      display: flex; align-items: center; gap: 6px;
-      font-size: .62rem;
-      color: rgba(255,255,255,.25);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .4);
       letter-spacing: .06em;
       margin-bottom: .35rem;
     }
+
     .search-result .sr-breadcrumb .sr-favicon {
-      width: 14px; height: 14px;
+      width: 14px;
+      height: 14px;
       background: var(--accent);
       border-radius: 3px;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-family: 'Bebas Neue'; font-size: .5rem;
-      color: #fff; flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue';
+      font-size: .5rem;
+      color: #fff;
+      flex-shrink: 0;
     }
+
     .search-result .sr-title {
       font-size: 1.05rem;
       color: #8ab4f8;
@@ -859,22 +1000,30 @@ a, button { cursor: none; } */
       margin-bottom: .3rem;
       line-height: 1.3;
     }
-    .search-result:hover .sr-title { text-decoration: underline; }
+
+    .search-result:hover .sr-title {
+      text-decoration: underline;
+    }
+
     .search-result .sr-desc {
-      font-size: .78rem;
-      color: rgba(255,255,255,.45);
+      font-size: .88rem;
+      color: rgba(255, 255, 255, .6);
       line-height: 1.65;
     }
+
     .search-result .sr-tags {
-      display: flex; flex-wrap: wrap; gap: .4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
       margin-top: .55rem;
     }
+
     .search-result .sr-tag {
-      font-size: .58rem;
+      font-size: .66rem;
       letter-spacing: .1em;
       text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,.1);
-      color: rgba(255,255,255,.3);
+      border: 1px solid rgba(255, 255, 255, .15);
+      color: rgba(255, 255, 255, .45);
       padding: .2rem .55rem;
       border-radius: 3px;
     }
@@ -882,105 +1031,144 @@ a, button { cursor: none; } */
     /* Project detail page */
     .project-page {
       padding: 2.5rem 3.5rem;
-      color: rgba(255,255,255,.88);
+      color: rgba(255, 255, 255, .88);
     }
+
     .project-page .pp-header {
-      display: flex; align-items: flex-start;
+      display: flex;
+      align-items: flex-start;
       justify-content: space-between;
       margin-bottom: 2rem;
       gap: 2rem;
     }
+
     .project-page .pp-num {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: .85rem;
-      color: rgba(255,255,255,.18);
+      font-size: .92rem;
+      color: rgba(255, 255, 255, .35);
       letter-spacing: .15em;
       margin-bottom: .4rem;
     }
+
     .project-page .pp-cat {
-      font-size: .6rem;
+      font-size: .7rem;
       letter-spacing: .22em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: .6rem;
     }
+
     .project-page .pp-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2.5rem, 5vw, 4rem);
       line-height: 1;
       color: #fff;
     }
+
     .project-page .pp-sub {
-      font-size: .75rem;
-      color: rgba(255,255,255,.35);
+      font-size: .85rem;
+      color: rgba(255, 255, 255, .55);
       margin-top: .5rem;
     }
+
     .project-page .pp-grid {
       display: grid;
       grid-template-columns: 260px 1fr;
       gap: 2rem;
       align-items: start;
     }
+
     .project-page .pp-img img {
-      width: 100%; border-radius: 10px;
+      width: 100%;
+      border-radius: 10px;
       display: block;
     }
+
     .project-page .pp-img .pp-img-placeholder {
-      width: 100%; aspect-ratio: 4/3;
-      background: rgba(255,255,255,.04);
-      border: 1px dashed rgba(255,255,255,.1);
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: rgba(255, 255, 255, .04);
+      border: 1px dashed rgba(255, 255, 255, .1);
       border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, .15);
       font-size: .7rem;
       letter-spacing: .12em;
     }
+
     .project-page .pp-body h3 {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.1rem;
       letter-spacing: .06em;
-      color: rgba(255,255,255,.55);
+      color: rgba(255, 255, 255, .75);
       margin: 1.5rem 0 .5rem;
       text-transform: uppercase;
     }
-    .project-page .pp-body h3:first-child { margin-top: 0; }
-    .project-page .pp-body p {
-      font-size: .82rem;
-      line-height: 1.85;
-      color: rgba(255,255,255,.6);
+
+    .project-page .pp-body h3:first-child {
+      margin-top: 0;
     }
+
+    .project-page .pp-body p {
+      font-size: .9rem;
+      line-height: 1.85;
+      color: rgba(255, 255, 255, .72);
+    }
+
     .project-page .pp-body ul {
       margin-left: 1.1rem;
       margin-top: .3rem;
     }
+
     .project-page .pp-body ul li {
-      font-size: .8rem;
+      font-size: .88rem;
       line-height: 1.8;
-      color: rgba(255,255,255,.55);
+      color: rgba(255, 255, 255, .68);
       margin-bottom: .2rem;
     }
-    .project-page .pp-body ul li strong { color: rgba(255,255,255,.82); font-weight: 500; }
+
+    .project-page .pp-body ul li strong {
+      color: rgba(255, 255, 255, .9);
+      font-weight: 500;
+    }
+
     .project-page .pp-tools {
-      display: flex; flex-wrap: wrap; gap: .5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
       margin-top: 1.5rem;
       padding-top: 1.2rem;
-      border-top: 1px solid rgba(255,255,255,.07);
+      border-top: 1px solid rgba(255, 255, 255, .07);
     }
+
     .project-page .pp-tool {
-      font-size: .62rem;
+      font-size: .7rem;
       letter-spacing: .1em;
       text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,.12);
-      color: rgba(255,255,255,.45);
+      border: 1px solid rgba(255, 255, 255, .18);
+      color: rgba(255, 255, 255, .6);
       padding: .28rem .7rem;
       border-radius: 4px;
     }
 
     @media (max-width: 768px) {
-      .search-page { padding: 2rem 1.2rem; }
-      .project-page { padding: 1.5rem 1.2rem; }
-      .project-page .pp-grid { grid-template-columns: 1fr; }
-      .browser-tab { min-width: 80px; }
+      .search-page {
+        padding: 2rem 1.2rem;
+      }
+
+      .project-page {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .project-page .pp-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .browser-tab {
+        min-width: 80px;
+      }
     }
 
     /* ─── PASSIONS ─── */
@@ -1010,7 +1198,7 @@ a, button { cursor: none; } */
       font-family: 'Bebas Neue', sans-serif;
       font-size: .9rem;
       letter-spacing: .2em;
-      color: rgba(10, 10, 10, .18);
+      color: rgba(10, 10, 10, .3);
       margin-bottom: 3rem;
     }
 
@@ -1023,15 +1211,15 @@ a, button { cursor: none; } */
     }
 
     .passion-body {
-      font-size: .83rem;
+      font-size: .93rem;
       line-height: 1.9;
-      color: var(--mid);
+      color: #4a4540;
     }
 
     .passion-badge {
       display: inline-block;
       margin-top: 1.5rem;
-      font-size: .58rem;
+      font-size: .68rem;
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--accent);
@@ -1066,7 +1254,7 @@ a, button { cursor: none; } */
     }
 
     #contact .section-index {
-      color: rgba(240, 237, 230, .55);
+      color: rgba(240, 237, 230, .75);
     }
 
     #contact h2 {
@@ -1100,15 +1288,15 @@ a, button { cursor: none; } */
     }
 
     .contact-meta-item dt {
-      font-size: .55rem;
+      font-size: .66rem;
       letter-spacing: .3em;
       text-transform: uppercase;
-      color: rgba(240, 237, 230, .5);
+      color: rgba(240, 237, 230, .7);
       margin-bottom: .4rem;
     }
 
     .contact-meta-item dd {
-      font-size: .85rem;
+      font-size: .95rem;
       color: var(--paper);
     }
 
@@ -1121,7 +1309,7 @@ a, button { cursor: none; } */
     }
 
     .soc {
-      font-size: .64rem;
+      font-size: .76rem;
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--paper);
@@ -1140,12 +1328,12 @@ a, button { cursor: none; } */
     /* ─── FOOTER ─── */
     footer {
       background: var(--ink);
-      color: rgba(240, 237, 230, .22);
+      color: rgba(240, 237, 230, .45);
       padding: 2rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: .58rem;
+      font-size: .7rem;
       letter-spacing: .18em;
       text-transform: uppercase;
     }
@@ -1165,7 +1353,7 @@ a, button { cursor: none; } */
       }
 
       #hero {
-        padding: 0 1.5rem 4rem;
+        padding: 5rem 1.5rem 4rem;
       }
 
       .section {
@@ -1191,9 +1379,18 @@ a, button { cursor: none; } */
         gap: 1.2rem;
       }
 
-      .project-row { grid-template-columns: 1fr; }
-      .project-item.two-thirds, .project-item.one-third { grid-column: auto; }
-      .project-row .proj-details { grid-column: auto; }
+      .project-row {
+        grid-template-columns: 1fr;
+      }
+
+      .project-item.two-thirds,
+      .project-item.one-third {
+        grid-column: auto;
+      }
+
+      .project-row .proj-details {
+        grid-column: auto;
+      }
 
       .proj-title {
         font-size: 1.8rem;
@@ -1229,14 +1426,16 @@ a, button { cursor: none; } */
     }
 
     /* Make the word "fait" black in the projects heading */
-    #projects h2 em { color: var(--ink); }
+    #projects h2 em {
+      color: var(--ink);
+    }
   </style>
 </head>
 
 <body>
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKB6ZCHS"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKB6ZCHS" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
   <!-- ─── LOADER ─── -->
@@ -1282,7 +1481,7 @@ a, button { cursor: none; } */
   </section>
 
   <!-- ─── MARQUEE ─── -->
-  <div class="marquee" aria-hidden="true">
+  <!-- <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
       <div class="marquee-item">Stage Feichter Electronics <span class="marquee-dot">◆</span> IUT Lannion <span
           class="marquee-dot">◆</span> Alternance 2026 <span class="marquee-dot">◆</span> Accordéon Diatonique <span
@@ -1293,7 +1492,7 @@ a, button { cursor: none; } */
           class="marquee-dot">◆</span> Développement Web <span class="marquee-dot">◆</span> Objectif ENSSAT <span
           class="marquee-dot">◆</span></div>
     </div>
-  </div>
+  </div> -->
 
   <!-- ─── ABOUT ─── -->
   <section id="about" class="section">
@@ -1310,7 +1509,8 @@ a, button { cursor: none; } */
       </div>
       <div class="r">
         <p class="about-lead">
-          J'ai 20 ans, étudiant en <strong>2ème année de BUT d'informatique</strong> à l'IUT de Lannion. Je crée des interfaces
+          J'ai 20 ans, étudiant en <strong>2ème année de BUT d'informatique</strong> à l'IUT de Lannion. Je crée des
+          interfaces
           où technique et esthétique se complètent.
         </p>
         <p class="about-body">
@@ -1338,8 +1538,7 @@ a, button { cursor: none; } */
             <dd><a href="#contact">Alternance — Sept. 2026</a></dd>
           </div>
         </dl>
-        <a href="images/Correc_Louennig_CV.pdf" target="_blank"
-          class="cv-link">Télécharger mon CV →</a>
+        <a href="images/Correc_Louennig_CV.pdf" target="_blank" class="cv-link">Télécharger mon CV →</a>
       </div>
     </div>
   </section>
@@ -1347,11 +1546,30 @@ a, button { cursor: none; } */
   <!-- ─── EXPERIENCE ─── -->
   <section id="experience" class="section">
     <div class="section-index r">02 — Expérience</div>
-    <h2 class="r">Ce que<br>j'ai <em>vécu</em></h2>
+    <h2 class="r">Ce que<br>j'ai <em>fait</em></h2>
     <div class="exp-list">
 
       <div class="exp-item r">
-        <div class="exp-period">Avr 2025<br>→ Aujourd'hui</div>
+        <div class="exp-period">Sept 2026<br>→ Recherche</div>
+        <div>
+          <div class="exp-company-name">Prochaine aventure</div>
+          <div class="exp-role">Alternant<br>Dev</div>
+          <div class="exp-tags">
+            <span class="exp-tag">Alternance</span>
+            <span class="exp-tag">Ouvert aux offres</span>
+            <span class="exp-tag">ENSSAT</span>
+          </div>
+        </div>
+        <div>
+          <p class="exp-desc">Je recherche une alternance en développement web ou logiciel pour septembre 2026, en vue
+            d'intégrer l'ENSSAT et me spécialiser davantage en ingénierie logicielle.</p>
+          <a href="images/Correc_Louennig_CV.pdf" target="_blank" class="cv-link"
+            style="margin-top:1.2rem;display:inline-flex;">Voir mon CV →</a>
+        </div>
+      </div>
+
+      <div class="exp-item r">
+        <div class="exp-period">Avr 2026<br>→ Aujourd'hui</div>
         <div>
           <div class="exp-company-name">Feichter Electronics</div>
           <div class="exp-role">Stagiaire<br>Développeur</div>
@@ -1385,30 +1603,13 @@ a, button { cursor: none; } */
           automatisation Docker, BDD relationnelle, site responsive pour les JO 2024.</p>
       </div>
 
-      <div class="exp-item r">
-        <div class="exp-period">Sept 2026<br>→ Recherche</div>
-        <div>
-          <div class="exp-company-name">Prochaine aventure</div>
-          <div class="exp-role">Alternant<br>Dev</div>
-          <div class="exp-tags">
-            <span class="exp-tag">Alternance</span>
-            <span class="exp-tag">Ouvert aux offres</span>
-            <span class="exp-tag">ENSSAT</span>
-          </div>
-        </div>
-        <p class="exp-desc">Je recherche une alternance en développement web ou logiciel pour septembre 2026, en vue
-          d'intégrer l'ENSSAT et me spécialiser davantage en ingénierie logicielle.</p>
-      </div>
-
     </div>
   </section>
 
   <!-- ─── PROJECTS ─── -->
   <section id="projects" class="section">
     <div class="section-index r">03 — Projets</div>
-    <h2 class="r">Ce que<br>j'ai <em>fait</em></h2>
-
-    <!-- Browser UI -->
+    <h2 class="r">Mes<br><em>projets</em></h2>
     <div class="browser-ui r">
 
       <!-- Chrome top bar -->
@@ -1447,8 +1648,10 @@ a, button { cursor: none; } */
           <div class="search-page">
             <div class="search-bar-fake">
               <span class="s-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                 </svg>
               </span>
               <span class="s-query">projets louennig correc</span>
@@ -1458,45 +1661,61 @@ a, button { cursor: none; } */
             <div class="search-results">
 
               <div class="search-result" data-project="p01">
-                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › jo-paris-2024</div>
+                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › jo-paris-2024
+                </div>
                 <div class="sr-title">Site JO Paris 2024 — Interface &amp; Design</div>
-                <div class="sr-desc">Site web responsive conçu pour les JO 2024 — maquettes Figma, charte graphique, HTML/CSS/JS. Projet équipe de 3–4 personnes.</div>
-                <div class="sr-tags"><span class="sr-tag">Figma</span><span class="sr-tag">HTML/CSS/JS</span><span class="sr-tag">Responsive</span></div>
+                <div class="sr-desc">Site web responsive conçu pour les JO 2024 — maquettes Figma, charte graphique,
+                  HTML/CSS/JS. Projet équipe de 3–4 personnes.</div>
+                <div class="sr-tags"><span class="sr-tag">Figma</span><span class="sr-tag">HTML/CSS/JS</span><span
+                    class="sr-tag">Responsive</span></div>
               </div>
 
               <div class="search-result" data-project="p02">
-                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › snake-terminal</div>
+                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › snake-terminal
+                </div>
                 <div class="sr-title">Snake en Terminal — Algorithmique C</div>
-                <div class="sr-desc">Jeu Snake fonctionnel en terminal en langage C — 4 versions progressives, documentation Doxygen. Projet individuel.</div>
-                <div class="sr-tags"><span class="sr-tag">C</span><span class="sr-tag">Doxygen</span><span class="sr-tag">Algorithmique</span></div>
+                <div class="sr-desc">Jeu Snake fonctionnel en terminal en langage C — 4 versions progressives,
+                  documentation Doxygen. Projet individuel.</div>
+                <div class="sr-tags"><span class="sr-tag">C</span><span class="sr-tag">Doxygen</span><span
+                    class="sr-tag">Algorithmique</span></div>
               </div>
 
               <div class="search-result" data-project="p03">
-                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › snake-autonome</div>
+                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › snake-autonome
+                </div>
                 <div class="sr-title">Snake Autonome — Algo &amp; Performance</div>
-                <div class="sr-desc">Exploration et comparaison d'approches algorithmiques sur un Snake autonome. Optimisation du nombre de déplacements et du temps CPU.</div>
+                <div class="sr-desc">Exploration et comparaison d'approches algorithmiques sur un Snake autonome.
+                  Optimisation du nombre de déplacements et du temps CPU.</div>
                 <div class="sr-tags"><span class="sr-tag">C</span><span class="sr-tag">Optimisation CPU</span></div>
               </div>
 
               <div class="search-result" data-project="p04">
-                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › docker-automatisation</div>
+                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets ›
+                  docker-automatisation</div>
                 <div class="sr-title">Automatisation Docker — Infrastructure</div>
-                <div class="sr-desc">Analyse de fichiers, correction via Docker, automatisation par scripts PHP. Mise en place d'un environnement reproductible.</div>
-                <div class="sr-tags"><span class="sr-tag">Docker</span><span class="sr-tag">PHP</span><span class="sr-tag">Scripting</span></div>
+                <div class="sr-desc">Analyse de fichiers, correction via Docker, automatisation par scripts PHP. Mise en
+                  place d'un environnement reproductible.</div>
+                <div class="sr-tags"><span class="sr-tag">Docker</span><span class="sr-tag">PHP</span><span
+                    class="sr-tag">Scripting</span></div>
               </div>
 
               <div class="search-result" data-project="p05">
                 <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › bdd-football</div>
                 <div class="sr-title">BDD Football — Base de données relationnelle</div>
-                <div class="sr-desc">Conception d'une base de données PostgreSQL complète pour gérer championnats, clubs, joueurs et résultats. Modélisation UML.</div>
-                <div class="sr-tags"><span class="sr-tag">PostgreSQL</span><span class="sr-tag">UML</span><span class="sr-tag">SQL avancé</span></div>
+                <div class="sr-desc">Conception d'une base de données PostgreSQL complète pour gérer championnats,
+                  clubs, joueurs et résultats. Modélisation UML.</div>
+                <div class="sr-tags"><span class="sr-tag">PostgreSQL</span><span class="sr-tag">UML</span><span
+                    class="sr-tag">SQL avancé</span></div>
               </div>
 
               <div class="search-result" data-project="p06">
-                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › ecosysteme-rse</div>
+                <div class="sr-breadcrumb"><span class="sr-favicon">LC</span>louennig.dev › projets › ecosysteme-rse
+                </div>
                 <div class="sr-title">Écosystème Numérique &amp; RSE — Recherche &amp; Équipe</div>
-                <div class="sr-desc">Analyse de la politique RSE d'une organisation, restitutions écrites et orales. Travail collaboratif en groupe de 4.</div>
-                <div class="sr-tags"><span class="sr-tag">Travail d'équipe</span><span class="sr-tag">Recherche</span><span class="sr-tag">Soutenance</span></div>
+                <div class="sr-desc">Analyse de la politique RSE d'une organisation, restitutions écrites et orales.
+                  Travail collaboratif en groupe de 4.</div>
+                <div class="sr-tags"><span class="sr-tag">Travail d'équipe</span><span
+                    class="sr-tag">Recherche</span><span class="sr-tag">Soutenance</span></div>
               </div>
 
             </div>
@@ -1513,56 +1732,126 @@ a, button { cursor: none; } */
     <div id="project-data" style="display:none">
 
       <div data-id="p01" data-title="Site JO Paris 2024" data-cat="Interface &amp; Design" data-num="01"
-           data-sub="Figma · HTML/CSS/JS · Responsive · Charte graphique" data-url="louennig.dev/projets/jo-paris-2024" data-img="images/S105.jpg">
-        <h3>Objectif du projet</h3><p>Concevoir un site web responsive pour un client fictif : Tony Estanguet, président du comité d'organisation des JO 2024. Recueillir les besoins, définir les cibles, organiser le contenu, concevoir une charte graphique et des maquettes, puis développer le site.</p>
-        <h3>Organisation</h3><p>Projet en équipe de 3 à 4 étudiants. Chacun avait un rôle précis (rédaction, design, développement). Travail collaboratif via Teams et dépôt Git avec points réguliers.</p>
-        <h3>Étapes de réalisation</h3><ul><li><strong>Expression des besoins :</strong> Rédaction d'une synthèse à partir de l'interview client fictif.</li><li><strong>Maquettage :</strong> Maquettes responsive sur Figma.</li><li><strong>Développement :</strong> Intégration HTML/CSS/JS et mise en place de la responsivité.</li><li><strong>Soutenance :</strong> Présentation du site et justification des choix.</li></ul>
-        <div class="pp-tools"><span class="pp-tool">Figma</span><span class="pp-tool">HTML</span><span class="pp-tool">CSS</span><span class="pp-tool">JavaScript</span><span class="pp-tool">Git</span></div>
+        data-sub="Figma · HTML/CSS/JS · Responsive · Charte graphique" data-url="louennig.dev/projets/jo-paris-2024"
+        data-img="images/S105.jpg">
+        <h3>Objectif du projet</h3>
+        <p>Concevoir un site web responsive pour un client fictif : Tony Estanguet, président du comité d'organisation
+          des JO 2024. Recueillir les besoins, définir les cibles, organiser le contenu, concevoir une charte graphique
+          et des maquettes, puis développer le site.</p>
+        <h3>Organisation</h3>
+        <p>Projet en équipe de 3 à 4 étudiants. Chacun avait un rôle précis (rédaction, design, développement). Travail
+          collaboratif via Teams et dépôt Git avec points réguliers.</p>
+        <h3>Étapes de réalisation</h3>
+        <ul>
+          <li><strong>Expression des besoins :</strong> Rédaction d'une synthèse à partir de l'interview client fictif.
+          </li>
+          <li><strong>Maquettage :</strong> Maquettes responsive sur Figma.</li>
+          <li><strong>Développement :</strong> Intégration HTML/CSS/JS et mise en place de la responsivité.</li>
+          <li><strong>Soutenance :</strong> Présentation du site et justification des choix.</li>
+        </ul>
+        <div class="pp-tools"><span class="pp-tool">Figma</span><span class="pp-tool">HTML</span><span
+            class="pp-tool">CSS</span><span class="pp-tool">JavaScript</span><span class="pp-tool">Git</span></div>
       </div>
 
       <div data-id="p02" data-title="Snake en Terminal" data-cat="Algorithmique — C" data-num="02"
-           data-sub="C · Doxygen · 4 versions progressives" data-url="louennig.dev/projets/snake-terminal" data-img="images/S101.png">
-        <h3>Objectif du projet</h3><p>Créer un jeu Snake fonctionnel en terminal selon un cahier des charges client. Le joueur contrôle un serpent qui mange des pommes sans se mordre ni heurter d'obstacles.</p>
-        <h3>Organisation</h3><p>Projet individuel : gestion de la conception, des tests et de l'implémentation en C.</p>
-        <h3>Étapes de réalisation</h3><ul><li><strong>Version 1 :</strong> Déplacement du serpent, premières fonctionnalités.</li><li><strong>Version 2 :</strong> Ajout croissance du serpent et accélération.</li><li><strong>Version 3 :</strong> Intégration d'obstacles et détection de collision.</li><li><strong>Version 4 :</strong> Conditions de victoire, peaufinage et tests.</li></ul>
-        <h3>Documentation</h3><p>Documentation générée avec Doxygen.</p>
-        <div class="pp-tools"><span class="pp-tool">C</span><span class="pp-tool">Visual Studio Code</span><span class="pp-tool">Doxygen</span></div>
+        data-sub="C · Doxygen · 4 versions progressives" data-url="louennig.dev/projets/snake-terminal"
+        data-img="images/S101.png">
+        <h3>Objectif du projet</h3>
+        <p>Créer un jeu Snake fonctionnel en terminal selon un cahier des charges client. Le joueur contrôle un serpent
+          qui mange des pommes sans se mordre ni heurter d'obstacles.</p>
+        <h3>Organisation</h3>
+        <p>Projet individuel : gestion de la conception, des tests et de l'implémentation en C.</p>
+        <h3>Étapes de réalisation</h3>
+        <ul>
+          <li><strong>Version 1 :</strong> Déplacement du serpent, premières fonctionnalités.</li>
+          <li><strong>Version 2 :</strong> Ajout croissance du serpent et accélération.</li>
+          <li><strong>Version 3 :</strong> Intégration d'obstacles et détection de collision.</li>
+          <li><strong>Version 4 :</strong> Conditions de victoire, peaufinage et tests.</li>
+        </ul>
+        <h3>Documentation</h3>
+        <p>Documentation générée avec Doxygen.</p>
+        <div class="pp-tools"><span class="pp-tool">C</span><span class="pp-tool">Visual Studio Code</span><span
+            class="pp-tool">Doxygen</span></div>
       </div>
 
       <div data-id="p03" data-title="Snake Autonome" data-cat="Algo &amp; Performance" data-num="03"
-           data-sub="C · Optimisation CPU" data-url="louennig.dev/projets/snake-autonome" data-img="images/S102.png">
-        <h3>Objectif du projet</h3><p>Explorer et comparer différentes approches algorithmiques appliquées à un Snake autonome. Optimiser le nombre de déplacements et le temps CPU requis pour atteindre les pommes sans heurter d'obstacles.</p>
-        <h3>Organisation</h3><p>Projet mené en binôme : collaboration sur l'idéation, l'implémentation et l'analyse des performances.</p>
-        <h3>Étapes de réalisation</h3><ul><li><strong>Version 1 :</strong> Algorithme simple dirigeant le serpent vers les pommes.</li><li><strong>Version 2 :</strong> Réduction des déplacements inutiles.</li><li><strong>Version 3 :</strong> Intégration de contraintes supplémentaires.</li><li><strong>Version 4 :</strong> Version finale avec optimisations de performances.</li></ul>
-        <h3>Documentation</h3><p>Dépôts commentés et rapport d'analyse sur les performances.</p>
+        data-sub="C · Optimisation CPU" data-url="louennig.dev/projets/snake-autonome" data-img="images/S102.png">
+        <h3>Objectif du projet</h3>
+        <p>Explorer et comparer différentes approches algorithmiques appliquées à un Snake autonome. Optimiser le nombre
+          de déplacements et le temps CPU requis pour atteindre les pommes sans heurter d'obstacles.</p>
+        <h3>Organisation</h3>
+        <p>Projet mené en binôme : collaboration sur l'idéation, l'implémentation et l'analyse des performances.</p>
+        <h3>Étapes de réalisation</h3>
+        <ul>
+          <li><strong>Version 1 :</strong> Algorithme simple dirigeant le serpent vers les pommes.</li>
+          <li><strong>Version 2 :</strong> Réduction des déplacements inutiles.</li>
+          <li><strong>Version 3 :</strong> Intégration de contraintes supplémentaires.</li>
+          <li><strong>Version 4 :</strong> Version finale avec optimisations de performances.</li>
+        </ul>
+        <h3>Documentation</h3>
+        <p>Dépôts commentés et rapport d'analyse sur les performances.</p>
         <div class="pp-tools"><span class="pp-tool">C</span><span class="pp-tool">Visual Studio Code</span></div>
       </div>
 
       <div data-id="p04" data-title="Automatisation Docker" data-cat="Infrastructure" data-num="04"
-           data-sub="Docker · PHP · Scripts · Environnement reproductible" data-url="louennig.dev/projets/docker-automatisation" data-img="images/S103.png">
-        <h3>Objectif du projet</h3><p>Analyser un ensemble de fichiers pour identifier des incohérences, les corriger via Docker, puis automatiser la procédure avec des scripts PHP. Mettre en place un environnement reproductible et efficace.</p>
-        <h3>Organisation</h3><p>Projet réalisé en groupe : contributions à l'analyse, à la mise en place Docker et au développement des scripts.</p>
-        <h3>Étapes de réalisation</h3><ul><li><strong>Analyse initiale :</strong> Étude d'un lot de fichiers pour identifier les problèmes.</li><li><strong>Correction :</strong> Utilisation d'images Docker adaptées pour modifier les fichiers.</li><li><strong>Automatisation :</strong> Développement de scripts PHP pour automatiser les traitements.</li></ul>
-        <h3>Documentation</h3><p>Documentation technique expliquant l'utilisation des conteneurs et des scripts.</p>
+        data-sub="Docker · PHP · Scripts · Environnement reproductible"
+        data-url="louennig.dev/projets/docker-automatisation" data-img="images/S103.png">
+        <h3>Objectif du projet</h3>
+        <p>Analyser un ensemble de fichiers pour identifier des incohérences, les corriger via Docker, puis automatiser
+          la procédure avec des scripts PHP. Mettre en place un environnement reproductible et efficace.</p>
+        <h3>Organisation</h3>
+        <p>Projet réalisé en groupe : contributions à l'analyse, à la mise en place Docker et au développement des
+          scripts.</p>
+        <h3>Étapes de réalisation</h3>
+        <ul>
+          <li><strong>Analyse initiale :</strong> Étude d'un lot de fichiers pour identifier les problèmes.</li>
+          <li><strong>Correction :</strong> Utilisation d'images Docker adaptées pour modifier les fichiers.</li>
+          <li><strong>Automatisation :</strong> Développement de scripts PHP pour automatiser les traitements.</li>
+        </ul>
+        <h3>Documentation</h3>
+        <p>Documentation technique expliquant l'utilisation des conteneurs et des scripts.</p>
         <div class="pp-tools"><span class="pp-tool">Docker</span><span class="pp-tool">PHP</span></div>
       </div>
 
       <div data-id="p05" data-title="BDD Football" data-cat="Base de données" data-num="05"
-           data-sub="PostgreSQL · UML · Modélisation · SQL avancé" data-url="louennig.dev/projets/bdd-football" data-img="images/S104.png">
-        <h3>Objectif du projet</h3><p>Concevoir une base de données relationnelle complète pour gérer championnats de football : clubs, équipes, joueurs, matches et résultats.</p>
-        <h3>Organisation</h3><p>Projet réalisé en binôme : modélisation conceptuelle puis écriture des scripts SQL.</p>
-        <h3>Étapes de réalisation</h3><ul><li><strong>Analyse et modélisation :</strong> Diagramme UML et formalisation des règles de gestion.</li><li><strong>Implémentation :</strong> Conversion en schéma relationnel et scripts SQL.</li><li><strong>Exploitation :</strong> Requêtes SQL (sélection, agrégation, jointures) pour besoins métiers.</li></ul>
-        <h3>Documentation</h3><p>Rapport détaillé justifiant les choix de modélisation et expliquant la logique des requêtes.</p>
-        <div class="pp-tools"><span class="pp-tool">Visual Paradigm</span><span class="pp-tool">Draw.io</span><span class="pp-tool">PostgreSQL</span></div>
+        data-sub="PostgreSQL · UML · Modélisation · SQL avancé" data-url="louennig.dev/projets/bdd-football"
+        data-img="images/S104.png">
+        <h3>Objectif du projet</h3>
+        <p>Concevoir une base de données relationnelle complète pour gérer championnats de football : clubs, équipes,
+          joueurs, matches et résultats.</p>
+        <h3>Organisation</h3>
+        <p>Projet réalisé en binôme : modélisation conceptuelle puis écriture des scripts SQL.</p>
+        <h3>Étapes de réalisation</h3>
+        <ul>
+          <li><strong>Analyse et modélisation :</strong> Diagramme UML et formalisation des règles de gestion.</li>
+          <li><strong>Implémentation :</strong> Conversion en schéma relationnel et scripts SQL.</li>
+          <li><strong>Exploitation :</strong> Requêtes SQL (sélection, agrégation, jointures) pour besoins métiers.</li>
+        </ul>
+        <h3>Documentation</h3>
+        <p>Rapport détaillé justifiant les choix de modélisation et expliquant la logique des requêtes.</p>
+        <div class="pp-tools"><span class="pp-tool">Visual Paradigm</span><span class="pp-tool">Draw.io</span><span
+            class="pp-tool">PostgreSQL</span></div>
       </div>
 
       <div data-id="p06" data-title="Écosystème Numérique &amp; RSE" data-cat="Recherche &amp; Équipe" data-num="06"
-           data-sub="Travail d'équipe · Recherche documentaire · Soutenance" data-url="louennig.dev/projets/ecosysteme-rse" data-img="images/s106.jpg">
-        <h3>Objectif du projet</h3><p>Comprendre l'écosystème numérique, travailler en équipe et analyser la politique RSE d'une organisation. Restitutions écrites et orales synthétiques.</p>
-        <h3>Organisation</h3><p>Travail en groupe de 4, encadré et en autonomie, avec outils collaboratifs et dépôt Moodle.</p>
-        <h3>Étapes de réalisation</h3><ul><li><strong>Séance 1 :</strong> Constitution des groupes et planification.</li><li><strong>Séance 2 :</strong> Recherche documentaire et diagnostic externe.</li><li><strong>Séance 3 :</strong> Soutenance intermédiaire et retours.</li><li><strong>Séances 4–7 :</strong> Finalisation, dépôt et soutenance finale.</li></ul>
-        <h3>Documentation</h3><p>Documentation de groupe guidée par les ressources des unités d'enseignement, avec points réguliers.</p>
-        <div class="pp-tools"><span class="pp-tool">Outils collaboratifs</span><span class="pp-tool">Moodle</span><span class="pp-tool">Présentation</span></div>
+        data-sub="Travail d'équipe · Recherche documentaire · Soutenance" data-url="louennig.dev/projets/ecosysteme-rse"
+        data-img="images/s106.jpg">
+        <h3>Objectif du projet</h3>
+        <p>Comprendre l'écosystème numérique, travailler en équipe et analyser la politique RSE d'une organisation.
+          Restitutions écrites et orales synthétiques.</p>
+        <h3>Organisation</h3>
+        <p>Travail en groupe de 4, encadré et en autonomie, avec outils collaboratifs et dépôt Moodle.</p>
+        <h3>Étapes de réalisation</h3>
+        <ul>
+          <li><strong>Séance 1 :</strong> Constitution des groupes et planification.</li>
+          <li><strong>Séance 2 :</strong> Recherche documentaire et diagnostic externe.</li>
+          <li><strong>Séance 3 :</strong> Soutenance intermédiaire et retours.</li>
+          <li><strong>Séances 4–7 :</strong> Finalisation, dépôt et soutenance finale.</li>
+        </ul>
+        <h3>Documentation</h3>
+        <p>Documentation de groupe guidée par les ressources des unités d'enseignement, avec points réguliers.</p>
+        <div class="pp-tools"><span class="pp-tool">Outils collaboratifs</span><span class="pp-tool">Moodle</span><span
+            class="pp-tool">Présentation</span></div>
       </div>
 
     </div><!-- /project-data -->
@@ -1586,7 +1875,8 @@ a, button { cursor: none; } */
         <div class="passion-num">02 / 02</div>
         <div class="passion-title">JEUX<br>VIDÉO</div>
         <p class="passion-body">Fan de compétition et de dépassement de soi.J'étais classé <strong>#42 mondial sur Brawl
-            Stars sur le brawler Squeak</strong>. Le jeu compétitif m'a appris la stratégie, l'analyse rapide et la persévérance.</p>
+            Stars sur le brawler Squeak</strong>. Le jeu compétitif m'a appris la stratégie, l'analyse rapide et la
+          persévérance.</p>
         <span class="passion-badge">#42 Mondial — Squeak</span>
         <div class="passion-bg" aria-hidden="true">02</div>
       </div>
@@ -1812,11 +2102,11 @@ a, button { cursor: none; } */
             '<span class="tab-label">' + proj.title + '</span>' +
             '<span class="tab-close" title="Fermer">✕</span>';
 
-          tab.querySelector('.tab-close').addEventListener('click', function(e) {
+          tab.querySelector('.tab-close').addEventListener('click', function (e) {
             e.stopPropagation();
             closeTab(id);
           });
-          tab.addEventListener('click', function() { activatePage(id, true); });
+          tab.addEventListener('click', function () { activatePage(id, true); });
           tabsContainer.appendChild(tab);
 
           // Create page
@@ -1830,18 +2120,18 @@ a, button { cursor: none; } */
 
           page.innerHTML =
             '<div class="project-page">' +
-              '<div class="pp-header">' +
-                '<div>' +
-                  '<div class="pp-num">' + proj.num + ' / 06</div>' +
-                  '<div class="pp-cat">' + proj.cat + '</div>' +
-                  '<div class="pp-title">' + proj.title + '</div>' +
-                  '<div class="pp-sub">' + proj.sub + '</div>' +
-                '</div>' +
-              '</div>' +
-              '<div class="pp-grid">' +
-                '<div class="pp-img">' + imgHtml + '</div>' +
-                '<div class="pp-body">' + proj.bodyHTML + '</div>' +
-              '</div>' +
+            '<div class="pp-header">' +
+            '<div>' +
+            '<div class="pp-num">' + proj.num + ' / 06</div>' +
+            '<div class="pp-cat">' + proj.cat + '</div>' +
+            '<div class="pp-title">' + proj.title + '</div>' +
+            '<div class="pp-sub">' + proj.sub + '</div>' +
+            '</div>' +
+            '</div>' +
+            '<div class="pp-grid">' +
+            '<div class="pp-img">' + imgHtml + '</div>' +
+            '<div class="pp-body">' + proj.bodyHTML + '</div>' +
+            '</div>' +
             '</div>';
 
           pagesContainer.appendChild(page);
@@ -1873,24 +2163,24 @@ a, button { cursor: none; } */
 
       // Search result clicks
       document.querySelectorAll('.search-result[data-project]').forEach(el => {
-        el.addEventListener('click', function() {
+        el.addEventListener('click', function () {
           openProject(this.getAttribute('data-project'));
         });
       });
 
       // Search tab click
-      document.querySelector('.browser-tab.search-tab').addEventListener('click', function() {
+      document.querySelector('.browser-tab.search-tab').addEventListener('click', function () {
         activatePage('search', true);
       });
 
       // Back / Fwd
-      btnBack.addEventListener('click', function() {
+      btnBack.addEventListener('click', function () {
         if (historyIdx > 0) {
           historyIdx--;
           activatePage(history[historyIdx], false);
         }
       });
-      btnFwd.addEventListener('click', function() {
+      btnFwd.addEventListener('click', function () {
         if (historyIdx < history.length - 1) {
           historyIdx++;
           activatePage(history[historyIdx], false);
